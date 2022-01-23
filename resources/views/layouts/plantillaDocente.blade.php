@@ -65,7 +65,7 @@
           </li>
           <li class="nav-item d-none d-sm-inline-block">
             <a class="nav-link" rel="tooltip" title="Egresado" data-placement="bottom" href="/egresado">
-              <h5> EGRESADO</h5>       
+              <h5> DOCENTE</h5>       
             </a>
           </li>
 
@@ -148,7 +148,7 @@
 
             <h1 class="mb-1" >UNIVERSIDAD NACIONAL DE TRUJILLO</h1> 
             <h3 class="mb-5">
-              <em>SEGUIMIENTO DE EGRESADOS </em>
+              <em>ASIGNACION DE CARGA HORARIA DE DOCENTES </em>
             </h3>
 
             <h3 class="mb-5">

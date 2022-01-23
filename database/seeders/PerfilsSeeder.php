@@ -16,13 +16,11 @@ class PerfilsSeeder extends Seeder
     {
         DB::table('perfils')->insert(['perfil' => 'administrador', ]);
 
-        DB::table('perfils')->insert(['perfil' => 'secretariaE', ]);
+        DB::table('perfils')->insert(['perfil' => 'docente', ]);
 
-        DB::table('perfils')->insert(['perfil' => 'secretariaC', ]);
+        DB::table('perfils')->insert(['perfil' => 'director', ]);
 
-        DB::table('perfils')->insert(['perfil' => 'comite', ]);
-
-        DB::table('perfils')->insert(['perfil' => 'egresado', ]);
+        
 
     }
 }

@@ -139,17 +139,12 @@ class UserController extends Controller
                 return redirect('/administrador');
                }
                elseif(Auth::user()->perfils_id=='2'){
-                return redirect('/secretariaE');
+                return redirect('/docente');
                }
                elseif(Auth::user()->perfils_id=='3'){
-                return redirect('/secretariaC');
+                return redirect('/director');
                }
-               elseif(Auth::user()->perfils_id=='4'){
-                return redirect('/comite');
-               }
-               elseif(Auth::user()->perfils_id=='5' && Auth::user()->estado=='1'){
-                return redirect('/egresado');
-               }
+              
                
             }
             else{

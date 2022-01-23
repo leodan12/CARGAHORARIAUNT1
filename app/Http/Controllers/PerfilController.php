@@ -103,31 +103,18 @@ class PerfilController extends Controller
     }
 
    
-    public function secretariaE()
+    public function docente()
     {
        //return "eres un secretariaE... estas a cargo del sistema";
-       return view('inicioSecretariaE');
+       return view('inicioDocente');
 
     }
 
-    public function secretariaC()
+    public function director()
     {
        //return "eres un secretariaC... estas a cargo del sistema";
-       return view('inicioSecretariaC');
+       return view('inicioDirector');
 
     }
-
-    public function comite()
-    {
-       //return "eres un comite... estas a cargo del sistema";
-       return view('iniciocomite');
-
-    }
-
-    public function egresado()
-    {
-       //return "eres un egresado... estas a cargo del sistema";
-       return view('inicioEgresado');
-
-    }
+ 
 }

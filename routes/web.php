@@ -34,22 +34,22 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::resource('perfil','PerfilController');
 Route::resource('usuario','UserController');
+/*
 Route::resource('empresa','EmpresaController');
 Route::resource('ofertalaboral','OfertalaboralController');
 Route::resource('experiencialaboral','ExperiencialaboralController');
 Route::resource('publicacion','PublicacionController');
 Route::resource('encuesta','EncuestaController');
 Route::resource('pregunta','PreguntaController');
-Route::resource('respuesta', 'RespuestaController');
+Route::resource('respuesta', 'RespuestaController');*/
 
 
 //para entrar con diferente perfil
 
 Route::get('/administrador', 'PerfilController@administrador');
-Route::get('/secretariaE', 'PerfilController@secretariaE');
-Route::get('/secretariaC', 'PerfilController@secretariaC');
-Route::get('/comite', 'PerfilController@comite');
-Route::get('/egresado', 'PerfilController@egresado');
+Route::get('/docente', 'PerfilController@docente');
+Route::get('/director', 'PerfilController@director');
+ 
 
 
 

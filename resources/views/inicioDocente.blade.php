@@ -1,48 +1,47 @@
-@extends('layouts.plantillaComite')
+@extends('layouts.plantillaDocente')
 
 @section('contenido')
 <div class="container">
     <div class="content-section-heading text-center">
-      <h3 class="text-secondary mb-0"> ✔ Elige una de las opciones disponibles para el comite</h3>
+      <h3 class="text-secondary mb-0"> ✔ Elige una de las opciones disponibles para el docente ✔</h3>
       <br>
     </div>
-    <div class="row no-gutters">
-
-      <div class="col-12 col-sm-6 col-md-4">
-        <a class="portfolio-item" href="/encuesta">
+    <div class="row row-cols-lg-1  no-gutters">
+      <div class="col-12 col-md-4 ">
+        <a class="portfolio-item" href="/experiencialaborales">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">ENCUESTAS</div>
-              <p class="mb-0">Gestionar Encuestas</p>
+              <div class="h2">EXPERIENCIA LABORAL</div>
+              <p class="mb-0">Registra tu experiencia laboral, ahora!</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/matriculas.jpg" alt="">
         </a>
       </div>
-      <div class="col-12 col-sm-6 col-md-4">
-        <a class="portfolio-item" href="/reporte">
+      <div class="col-12 col-md-4 ">
+        <a class="portfolio-item" href="/publicaciones">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">Reportes</div>
-              <p class="mb-0">Ver Reportess</p>
+              <div class="h2">PUBLICACIONES</div>
+              <p class="mb-0">Realiza tus publicaciones aquí!</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
         </a>
-      </div>           
-      <div class="col-12 col-sm-6 col-md-4">
-        <a class="portfolio-item" href="/alumno">
+      </div>  
+      <div class="col-12 col-md-4 ">
+        <a class="portfolio-item" href="/responderencuestas">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">OPCION 3</div>
-              <p class="mb-0">opcion</p>
+              <div class="h2">RESPONDER ENCUESTAS</div>
+              <p class="mb-0">Responder encuestas disponibles aquí!</p>
             </div>
           </div>
-          <img class="img-fluid" src="/img/ALUMNOS.jpg" alt="">
+          <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
         </a>
-      </div>
-    
-     
+      </div>  
+    </div>
+  <!--</div>-->
 
 <div class="row no-gutters">
   
