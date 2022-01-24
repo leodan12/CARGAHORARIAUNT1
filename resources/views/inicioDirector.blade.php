@@ -9,22 +9,22 @@
     <div class="row no-gutters">
 
       <div class="col-12 col-sm-6 col-md-4">
-        <a class="portfolio-item" href="/empresas">
+        <a class="portfolio-item" href="/asignarcursos">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">EMPRESAS</div>
-              <p class="mb-0">Gestionar las Empresa</p>
+              <div class="h2">ASIGNAR CURSOS</div>
+              <p class="mb-0">asignacion de cursos a docentes</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/matriculas.jpg" alt="">
         </a>
       </div>
       <div class="col-12 col-sm-6 col-md-4">
-        <a class="portfolio-item" href="/ofertaslaborales">
+        <a class="portfolio-item" href="/asignaraulas">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">OFERTAS LABORALES</div>
-              <p class="mb-0">Gestionar Ofertas Laborales</p>
+              <div class="h2">ASIGNAR AULAS</div>
+              <p class="mb-0">asignar aulas a cursos</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
