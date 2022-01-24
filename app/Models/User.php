@@ -65,40 +65,24 @@ class User extends Authenticatable
         return false;}
     }
 
-    public function esSecretariaE(){
+    public function esDirector(){
 
-        if($this->perfil->perfil=='secretariaE'){
+        if($this->perfil->perfil=='director'){
             return true;
         }
         else {
         return false;}
     }
 
-    public function esSecretariaC(){
+    public function esDocente(){
 
-        if($this->perfil->perfil=='secretariaC'){
+        if($this->perfil->perfil=='docente'){
             return true;
         }
         else {
         return false;}
     }
-    public function EsComite(){
-
-        if($this->perfil->perfil=='comite'){
-            return true;
-        }
-        else {
-        return false;}
-    }
-
-    public function esEgresado(){
-
-        if($this->perfil->perfil=='egresado'){
-            return true;
-        }
-        else {
-        return false;}
-    }
+     
 
 
 
