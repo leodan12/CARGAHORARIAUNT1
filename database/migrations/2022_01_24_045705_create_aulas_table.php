@@ -18,6 +18,7 @@ class CreateAulasTable extends Migration
             $table->string('ubicacion');
             $table->string('local');
             $table->string('numero');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

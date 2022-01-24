@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
 use Illuminate\Http\Request;
+use App\Models\Curso;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;   //siempre poner esto ....
+use Illuminate\Support\Facades\Hash;
 
 class CursoController extends Controller
 {
@@ -11,9 +15,13 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $buscarpor=$request->get('buscarpor');
+        $cursos=Curso::where('ciclo','like','%'.$buscarpor.'%')->get();//->paginate($this::PAGINACION);  
+        
+     //  $user=perfil::where('estado','=',TRUE)->get();
+        return  view('cursos.index',compact('cursos','buscarpor'));  
     }
 
     /**

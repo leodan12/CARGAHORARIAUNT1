@@ -19,6 +19,7 @@ class CreateDetallecursosTable extends Migration
             $table->string('semestre');
             $table->integer('idDocente');
             $table->integer('idCurso');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

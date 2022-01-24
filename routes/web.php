@@ -50,8 +50,10 @@ Route::get('/director', 'PerfilController@director');
 Route::get('/users', 'UserController@index');
 Route::get('/perfiles', 'PerfilController@index');
 
-Route::get('/ofertaslaborales', 'OfertalaboralController@index');
-Route::get('/experiencialaborales', 'ExperiencialaboralController@index');
+Route::get('/asignarcursos', 'DetallecursoController@index');
+Route::get('/cursos', 'CursoController@index');
+ 
+
 
 
 //rutas de metodos adicionales
