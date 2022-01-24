@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetallecursosTable extends Migration
+class CreateSemestresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateDetallecursosTable extends Migration
      */
     public function up()
     {
-        Schema::create('detallecursos', function (Blueprint $table) {
+        Schema::create('semestres', function (Blueprint $table) {
             $table->id();
-            $table->integer('año');
-            $table->integer('idSemestre');
-            $table->integer('idDocente');
-            $table->integer('idCurso');
+            $table->string('semestre');
+            $table->string('año');
             $table->boolean('estado')->default(true);
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateDetallecursosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detallecursos');
+        Schema::dropIfExists('semestres');
     }
 }

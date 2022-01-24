@@ -54,7 +54,7 @@
         
           
           <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" rel="tooltip" title="Inicio" data-placement="bottom" href="/secretariaE">
+            <a class="nav-link" rel="tooltip" title="Inicio" data-placement="bottom" href="/director">
                 <img class="img-fluid" src="../../img/inicio.png">
                 
                  
@@ -64,20 +64,20 @@
             </a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" rel="tooltip" title="Logueado como secretaria de escuela" data-placement="bottom" href="#">
+            <a class="nav-link" rel="tooltip" title="Logueado como director de escuela" data-placement="bottom" href="#">
               <h5> DIRECTOR</h5>       
             </a>
           </li>
 
           <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" rel="tooltip" title="Gestionar Empresas" data-placement="bottom" href="/empresas">
-              <h5>EMPRESAS</h5>
+            <a class="nav-link" rel="tooltip" title="Asignar cursos a docentes" data-placement="bottom" href="/asignarcursos">
+              <h5>ASIGNAR CUSOS</h5>
             </a>
           </li>
 
           <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" rel="tooltip" title="Gestionar Ofertas Laborales" data-placement="bottom" href="/ofertaslaborales">
-              <h5>OFERTAS LABORALES</h5>
+            <a class="nav-link" rel="tooltip" title="Asignar aulas a los cursos" data-placement="bottom" href="/asignaraulas">
+              <h5>ASIGNAR AULAS</h5>
             </a>
           </li>
          

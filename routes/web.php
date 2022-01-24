@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::resource('perfil','PerfilController');
 Route::resource('usuario','UserController');
+Route::resource('detallecurso','DetallecursoController');
  
 
 //para entrar con diferente perfil
@@ -68,6 +69,12 @@ Route::get('cancelarPerfil', function () {
 Route::get('cancelarUsuario', function () {
     return redirect()->route('usuario.index')->with('datos','Accion cancelada..!');
 })->name('cancelarUsuario');  //le damos nombre a la ruta
+ 
+
+
+Route::get('cancelarDetalleCursos', function () {
+    return redirect()->route('detallecurso.index')->with('datos','Accion cancelada..!');
+})->name('cancelarDetalleCursos');  //le damos nombre a la ruta
  
 
 

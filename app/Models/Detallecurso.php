@@ -16,6 +16,10 @@ class Detallecurso extends Model
         return $this->hasOne('App\Models\Docente','id','idDocente');
     }
 
+    public function semestre(){
+        return $this->hasOne('App\Models\Semestre','id','idSemestre');
+    }
+
     public function cargahorarias() {
         
         return $this->hasMany(Cargahoraria::class,'idCargahoraria','id');

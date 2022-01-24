@@ -91,10 +91,10 @@
     <div class="container">
       <h3 class="text-center">LISTADO DE CURSOS ASIGNADOS</h3>
       <div class="d-none d-md-block col-12" style="position: relative;right: 40%">
-        <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../administrador" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
+        <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../director" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
       </div>
       <div class="col-12 d-md-none" >
-        <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../administrador" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
+        <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../director" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
       </div>
 
     @if(session('datos'))
@@ -107,7 +107,7 @@
     @endif
 
     <nav class="navbar navbar-light ">
-      <a href="{{route('perfil.create')}}" class="btn btn-success" style="border-radius: 40px;"><i class="fas fa-plus"></i>ASIGNAR CURSOS A LOS DOCENTES</a><br>
+      <a href="{{route('detallecurso.create')}}" class="btn btn-success" style="border-radius: 40px;"><i class="fas fa-plus"></i>ASIGNAR CURSOS A LOS DOCENTES</a><br>
      <form class="form-inline my-2 my-lg-0 float-right" method="GET">  <!--Para que se vaya a la derecha de la pagina float-->
           <input name="buscarpor" class="form-control col-8 mr-2" type="search"  style="border-radius: 40px;" placeholder="Buscar por Nombre" aria-label="Search" value="{{ $buscarpor }}">
            <button class="btn btn-success my-2 my-sm-0" style="border-radius: 40px;" type="submit">Buscar <i class="fa fa-search"></i></button>
@@ -120,7 +120,7 @@
         <table class="table" style="border-radius: 12px;">
         <thead class="thead-dark">
           <tr>
-            <th scope="col"style="text-align: center">ID ROL</th>
+            <th scope="col"style="text-align: center">ID </th>
             <th scope="col" style="text-align: center">AÑO</th>
             <th scope="col" style="text-align: center">SEMESTRE</th>
             <th scope="col" style="text-align: center">DOCENTE</th>
@@ -135,12 +135,12 @@
                 <tr>
                     <td style="text-align: center">{{$k->id}}</td>
                     <td style="text-align: center">{{$k->año}}</td>
-                    <td style="text-align: center">{{$k->semestre}}</td>
+                    <td style="text-align: center">{{$k->semestre->semestre}}</td>
                     <td style="text-align: center">{{$k->docente->nombres}}</td>
                     <td style="text-align: center">{{$k->curso->nombre}}</td>
                     <td style="text-align: center">{{$k->estado}}</td>
                     <td class="menu" data-animation="to-left">  
-                      <a href="{{route('perfil.edit',$k->id)}}"> 
+                      <a href="{{route('detallecurso.edit',$k->id)}}"> 
                         <span><b>EDITAR</b></span>
                         <span>
                           <i class="fas fa-edit" aria-hidden="true"></i>
@@ -149,7 +149,7 @@
                     </td>
                     <td>
                         <div class="form-group" style="text-align: center">
-                          <form class="submit-eliminar " action="" method="post">
+                          <form class="submit-eliminar " action="{{action('DetallecursoController@destroy', $k->id)}}" method="post">
                              @csrf
                              <input name="_method" type="hidden" value="DELETE">
                              <button onclick="return confirm('Desea cambiar el estado del perfil?')" style="border-radius: 40px;" type="submit" class="btn btn-danger btn-sm">
