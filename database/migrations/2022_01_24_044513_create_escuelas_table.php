@@ -17,7 +17,6 @@ class CreateEscuelasTable extends Migration
             $table->id();
             $table->string('escuela');
             $table->string('facultad');
-            $table->integer('idDirector');
             $table->boolean('estado')->default(true);
             $table->timestamps();
         });

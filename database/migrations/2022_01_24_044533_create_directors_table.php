@@ -19,6 +19,7 @@ class CreateDirectorsTable extends Migration
             $table->string('correo');
             $table->string('telefono');
             $table->string('direccion');
+            $table->integer('idEscuela');
             $table->boolean('estado')->default(true);
             $table->timestamps();
         });

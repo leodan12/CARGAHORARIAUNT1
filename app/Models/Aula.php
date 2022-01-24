@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Aula extends Model
 {
     use HasFactory;
+
+    public function detalleaulas() {
+        
+        return $this->hasMany(Detalleaula::class,'idAula','id');
+
+     }
+
+
 }

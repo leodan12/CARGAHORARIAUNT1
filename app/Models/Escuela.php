@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Escuela extends Model
 {
     use HasFactory;
+
+    public function docentes() {
+        
+        return $this->hasMany(Docente::class,'idEscuela','id');
+
+     }
+
+     public function directores() {
+        
+        return $this->hasMany(Director::class,'idEscuela','id');
+
+     }
+
 }

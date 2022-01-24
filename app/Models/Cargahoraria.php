@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cargahoraria extends Model
 {
     use HasFactory;
+
+    public function detallecurso(){
+        return $this->hasOne('App\Models\Detallecurso','id','idDetallecurso');
+    }
+
 }
