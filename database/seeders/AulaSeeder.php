@@ -19,6 +19,7 @@ class AulaSeeder extends Seeder
         DB::table('aulas')->insert(['ubicacion' => 'ciudad universitaria','local' => 'ingenieria','numero' => 'I-3',]);
         DB::table('aulas')->insert(['ubicacion' => 'ciudad universitaria','local' => 'ingenieria', 'numero' => 'I-2',]);
         DB::table('aulas')->insert(['ubicacion' => 'ciudad universitaria','local' => 'ingenieria','numero' => 'I-1',]);
+        DB::table('aulas')->insert(['ubicacion' => 'ciudad universitaria','local' => 'ingenieria','numero' => 'cubiculo 5',]);
         
     }
 }

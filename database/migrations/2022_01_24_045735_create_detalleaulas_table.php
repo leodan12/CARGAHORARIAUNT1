@@ -15,11 +15,11 @@ class CreateDetalleaulasTable extends Migration
     {
         Schema::create('detalleaulas', function (Blueprint $table) {
             $table->id();
-            $table->string('hora');
             $table->string('dia');
-            $table->integer('duracionhoras');
+            $table->string('inicio');
+            $table->string('fin');
             $table->integer('idAula');
-            $table->integer('idCurso');
+            $table->integer('idCargahoraria');
             $table->timestamps();
         });
     }

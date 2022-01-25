@@ -13,4 +13,14 @@ class Cargahoraria extends Model
         return $this->hasOne('App\Models\Detallecurso','id','idDetallecurso');
     }
 
+    public function carga(){
+        return $this->hasOne('App\Models\Carga','id','idCarga');
+    }
+
+    public function detalleaulas() {
+        
+        return $this->hasMany(Detalleaula::class,'idCargahoraria','id');
+
+     }
+
 }

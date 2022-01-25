@@ -50,9 +50,9 @@ class User extends Authenticatable
     }
     
 
-    public function egresados() {
+    public function docentes() {
         
-        return $this->hasMany(Egresado::class,'idusuario','id');
+        return $this->hasMany(Docente::class,'idUsuario','id');
     }
     
 

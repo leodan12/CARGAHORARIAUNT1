@@ -10,6 +10,7 @@ use App\Models\Semestre;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;   //siempre poner esto ....
 use Illuminate\Support\Facades\Hash;
+ 
 
 class DetallecursoController extends Controller
 {
@@ -43,6 +44,57 @@ class DetallecursoController extends Controller
         return  view('detallecursos.create',compact('docente','curso','semestre'));  
    
     }
+
+    public function semestres( Request $request)
+    {
+        $buscarpor=$request->get('buscarpor');
+        $semestre=Semestre::where('semestre','like','%'.$buscarpor.'%')->get();   
+        
+        $docente=Docente::where('estado','=','1')->get();
+        $curso=Curso::where('estado','=','1')->get();
+         
+
+        return  view('detallecursos.semestres',compact('buscarpor', 'docente','curso','semestre'));  
+   
+    }
+
+
+    public function horariosemanal($id){
+        
+        $semestre= Semestre::where('id','=',$id)->first();
+                        
+        $detallecurso = DB::table('docentes as d','d.estado','=','1')
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->join('detalleaulas as da','da.idDetallecurso','=','dc.id')
+        ->join('aulas as a','da.idAula','=','a.id')
+        ->select('c.nombre','s.semestre')
+        ->get();
+
+        $cargahoraria = DB::table('docentes as d','d.estado','=','1')
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->join('cargahorarias as ch','ch.idDetallecurso','=','dc.id')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->join('detalleaulas as da','da.idDetallecurso','=','dc.id')
+        ->join('aulas as a','da.idAula','=','a.id')
+        ->select('c.nombre','s.semestre')
+        ->get();
+
+        $user=Auth::user()->id;
+        $docente=Docente::where('idUsuario','=',$user)->first();
+         
+
+        
+        $pdf = \PDF::loadView('detallecursos.horariosemanal', ['docente'=>$docente,'detallecurso'=>$detallecurso,'cargahoraria'=>$cargahoraria,'semestre'=>$semestre]);
+        return $pdf->stream('horariosemanal.pdf');
+               
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

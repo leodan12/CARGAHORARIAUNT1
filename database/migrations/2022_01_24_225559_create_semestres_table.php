@@ -17,6 +17,8 @@ class CreateSemestresTable extends Migration
             $table->id();
             $table->string('semestre');
             $table->string('año');
+            $table->date('inicio');
+            $table->date('fin');
             $table->boolean('estado')->default(true);
             $table->timestamps();
         });
