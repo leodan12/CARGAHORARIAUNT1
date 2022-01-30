@@ -11,30 +11,20 @@
         <a class="portfolio-item" href="/horario">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">HORARIO SEMANAL</div>
-              <p class="mb-0">Generar el horario semanal!</p>
+              <div class="h2">GENERAR DOCUMENTOS DEL DOCENTE</div>
+              <p class="mb-0">Generar Reportes y declaraciones del docente!</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/matriculas.jpg" alt="">
         </a>
       </div>
-      <div class="col-12 col-md-4 ">
-        <a class="portfolio-item" href="/publicaciones">
-          <div class="caption">
-            <div class="caption-content">
-              <div class="h2">REPORTE CARGA-HORARIA</div>
-              <p class="mb-0">Generar reporte de carga horaria!</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
-        </a>
-      </div>  
+       
       <div class="col-12 col-md-4 ">
         <a class="portfolio-item" href="/responderencuestas">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">RESPONDER ENCUESTAS</div>
-              <p class="mb-0">Responder encuestas disponibles aquí!</p>
+              <div class="h2">DECLARACION JURADA </div>
+              <p class="mb-0">DECLARACION JURADA DE LOS DOCENTES!</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">

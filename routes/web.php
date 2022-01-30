@@ -56,15 +56,12 @@ Route::get('/horario', 'DetallecursoController@semestres');
 Route::get('/cursos', 'CursoController@index');
  
 
-
-
 //rutas de metodos adicionales
-//Route::get('/Encuesta/{id}','EncuestaController@estado')->name('estadoencuesta');
-//Route::get('/horariosemanal','DetalleCursoController@horariosemanal')->name('horariosemanal');
+ 
 Route::get('/horariosemanal/{id}','DetalleCursoController@horariosemanal')->name('horariosemanal');
-
-//Route::get('/horario','DetalleCursoController@semestres')->name('horario');
-
+Route::get('/cargahorariadeclaracion/{id}','DetalleCursoController@cargahorariadeclaracion')->name('cargahorariadeclaracion');
+Route::get('/declaracionjurada1/{id}','DetalleCursoController@declaracionjurada1')->name('declaracionjurada1');
+Route::get('/declaracionjurada2/{id}','DetalleCursoController@declaracionjurada2')->name('declaracionjurada2');
 
 // cancelaciones 
 Route::get('cancelarPerfil', function () {

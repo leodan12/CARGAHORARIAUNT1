@@ -81,7 +81,13 @@
                         <td   style=" border:  inset 1pt"> {{$key->id}} </td>
                         <td   style=" border:  inset 1pt"> {{$key->dia}} </td>
                         <td   style=" border: inset 1pt"> {{$key->inicio}}-{{$key->fin}} </td>
+                        @if($key->carga == 'curso')
+                        <td   style=" border:  inset 1ptk"> {{$key->nombre}} </td>
+                        @else
                         <td   style=" border:  inset 1ptk"> {{$key->carga}} </td>
+                        @endif
+                       
+
                         <td   style=" border:  inset 1pt"> {{$key->local}} </td>
                         <td   style=" border: inset 1pt"> {{$key->numero}} </td>
                         <td   style=" border: inset 1pt"> {{$key->horas}} </td>

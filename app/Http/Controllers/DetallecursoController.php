@@ -7,6 +7,8 @@ use App\Models\Detallecurso;
 use App\Models\Curso;
 use App\Models\Docente;
 use App\Models\Semestre;
+use App\Models\Escuela;
+use App\Models\Facultad;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;   //siempre poner esto ....
 use Illuminate\Support\Facades\Hash;
@@ -48,7 +50,8 @@ class DetallecursoController extends Controller
     public function semestres( Request $request)
     {
         $buscarpor=$request->get('buscarpor');
-        $semestre=Semestre::where('semestre','like','%'.$buscarpor.'%')->get();   
+        $semestre=Semestre::where('semestre','like','%'.$buscarpor.'%')
+        ->where('estado','=','1')->get();   
         
         $docente=Docente::where('estado','=','1')->get();
         $curso=Curso::where('estado','=','1')->get();
@@ -62,17 +65,7 @@ class DetallecursoController extends Controller
     public function horariosemanal($id){
         
         $semestre= Semestre::where('id','=',$id)->first();
-                        
-        $detallecurso = DB::table('docentes as d','d.estado','=','1')
-        ->join('detallecursos as dc','d.id','=','dc.idDocente')
-        ->join('cargahorarias as ch','dc.id','=','ch.idDetallecurso')
-        ->join('semestres as s','s.id','=','dc.idSemestre')
-        ->where('s.id','=',$id)
-        ->join('cursos as c','c.id','=','dc.idCurso')
-        ->join('detalleaulas as da','da.idCargahoraria','=','ch.id')
-        ->join('aulas as a','da.idAula','=','a.id')
-        ->select('c.nombre','s.semestre')
-        ->get();
+           
 
         $user=Auth::user()->id;
 
@@ -94,12 +87,84 @@ class DetallecursoController extends Controller
          
          
         
-        $pdf = \PDF::loadView('detallecursos.horariosemanal', ['docente'=>$docente,'detallecurso'=>$detallecurso,'cargahoraria'=>$cargahoraria,'semestre'=>$semestre]);
+        $pdf = \PDF::loadView('detallecursos.horariosemanal', ['docente'=>$docente, 'cargahoraria'=>$cargahoraria,'semestre'=>$semestre]);
         return $pdf->setPaper('A4', 'landscape')->stream('horariosemanal.pdf');
             
     }
 
+     
+    
+    public function cargahorariadeclaracion($id){
+        
+        $semestre= Semestre::where('id','=',$id)->first();
+           
 
+        $user=Auth::user()->id;
+
+        $cargahoraria = DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',$user)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('cargahorarias as ch','dc.id','=','ch.idDetallecurso')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->join('detalleaulas as da','da.idCargahoraria','=','ch.id')
+        ->join('aulas as a','da.idAula','=','a.id')
+        ->join('cargas as ca','ch.idCarga','=','ca.id')
+        ->select('c.id','c.nombre','dc.horas','dc.horasT','dc.horasL','dc.horasP','da.dia','da.inicio','da.fin')
+        ->get();
+
+        $curso = DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',$user)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->select('c.id','c.nombre','c.codigo','c.categoria','c.ciclo')
+        ->get();
+        
+
+        
+        $docente=Docente::where('idUsuario','=',$user)->first();
+        $escuela=Escuela::where('id','=',$docente->idEscuela)->first();
+         
+        $pdf = \PDF::loadView('detallecursos.cargahorariadeclaracion', ['escuela'=>$escuela,'curso'=>$curso,'docente'=>$docente, 'cargahoraria'=>$cargahoraria,'semestre'=>$semestre]);
+        return $pdf->setPaper('A4', 'portrait')->stream('cargahorariadeclaracion.pdf');
+            
+    }
+
+    public function declaracionjurada1($id){
+        
+        $semestre= Semestre::where('id','=',$id)->first();
+            
+        $user=Auth::user()->id;
+ 
+        $docente=Docente::where('idUsuario','=',$user)->first();
+        $escuela=Escuela::where('id','=',$docente->idEscuela)->first();
+        $facultad=Facultad::where('id','=',$escuela->idFacultad)->first();
+
+        $pdf = \PDF::loadView('detallecursos.declaracionjurada1', ['escuela'=>$escuela,'docente'=>$docente,'semestre'=>$semestre]);
+        return $pdf->setPaper('A4', 'portrait')->stream('declaracionjurada1.pdf');
+            
+    }
+    public function declaracionjurada2($id){
+        
+        $semestre= Semestre::where('id','=',$id)->first();
+            
+        $user=Auth::user()->id;
+ 
+        $docente=Docente::where('idUsuario','=',$user)->first();
+        $escuela=Escuela::where('id','=',$docente->idEscuela)->first();
+        $facultad=Facultad::where('id','=',$escuela->idFacultad)->first();
+
+        $pdf = \PDF::loadView('detallecursos.declaracionjurada2', ['escuela'=>$escuela,'docente'=>$docente,'semestre'=>$semestre]);
+        return $pdf->setPaper('A4', 'portrait')->stream('declaracionjurada2.pdf');
+            
+    }
+
+
+
+    
 
     /**
      * Store a newly created resource in storage.

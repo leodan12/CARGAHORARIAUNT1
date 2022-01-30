@@ -16,12 +16,12 @@ class CursoSeeder extends Seeder
     {
         DB::table('cursos')->insert(['nombre' => 'CargaNoLectiva','ciclo' => 'todos', 'codigo' => 'CNL', 'categoria' => 'CNL','creditos' => '0',]);
        
-        DB::table('cursos')->insert(['nombre' => 'ing de software','ciclo' => 'octavo', 'codigo' => 'IS-II', 'categoria' => 'ES','creditos' => '3',]);
-        DB::table('cursos')->insert(['nombre' => 'ing de datos','ciclo' => 'octavo', 'codigo' => 'ID-II', 'categoria' => 'ES','creditos' => '3',]);
-        DB::table('cursos')->insert(['nombre' => 'redes','ciclo' => 'octavo', 'codigo' => 'RC-II', 'categoria' => 'ES','creditos' => '3',]);
-        DB::table('cursos')->insert(['nombre' => 'IOT','ciclo' => 'octavo', 'codigo' => 'IoT-II', 'categoria' => 'ES','creditos' => '3',]);
-        DB::table('cursos')->insert(['nombre' => 'requerimientos','ciclo' => 'octavo', 'codigo' => 'R-II', 'categoria' => 'ES','creditos' => '3',]);
-        DB::table('cursos')->insert(['nombre' => 'Elab Proyecto de tesis II','ciclo' => 'decimo', 'codigo' => 'PT-II', 'categoria' => 'ES','creditos' => '4',]);
+        DB::table('cursos')->insert(['nombre' => 'ing de software','ciclo' => '8', 'codigo' => 'IS-II', 'categoria' => 'ES','creditos' => '3',]);
+        DB::table('cursos')->insert(['nombre' => 'ing de datos','ciclo' => '8', 'codigo' => 'ID-II', 'categoria' => 'ES','creditos' => '3',]);
+        DB::table('cursos')->insert(['nombre' => 'redes','ciclo' => '8', 'codigo' => 'RC-II', 'categoria' => 'ES','creditos' => '3',]);
+        DB::table('cursos')->insert(['nombre' => 'IOT','ciclo' => '8', 'codigo' => 'IoT-II', 'categoria' => 'ES','creditos' => '3',]);
+        DB::table('cursos')->insert(['nombre' => 'requerimientos','ciclo' => '8', 'codigo' => 'R-II', 'categoria' => 'ES','creditos' => '3',]);
+        DB::table('cursos')->insert(['nombre' => 'Elab Proyecto de tesis II','ciclo' => '10', 'codigo' => 'PT-II', 'categoria' => 'ES','creditos' => '4',]);
        
         
     }
