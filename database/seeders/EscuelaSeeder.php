@@ -14,7 +14,7 @@ class EscuelaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('escuelas')->insert(['escuela' => 'ing de sistemas','idFacultad' => '1',]);
+        DB::table('escuelas')->insert(['escuela' => 'ingenieria de sistemas','idFacultad' => '1',]);
       
     }
 }

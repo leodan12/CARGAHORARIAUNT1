@@ -18,6 +18,7 @@ class CreateDetalleaulasTable extends Migration
             $table->string('dia');
             $table->string('inicio');
             $table->string('fin');
+            $table->integer('horas');
             $table->integer('idAula');
             $table->integer('idCargahoraria');
             $table->timestamps();

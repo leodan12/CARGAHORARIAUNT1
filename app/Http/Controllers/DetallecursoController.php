@@ -65,33 +65,38 @@ class DetallecursoController extends Controller
                         
         $detallecurso = DB::table('docentes as d','d.estado','=','1')
         ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('cargahorarias as ch','dc.id','=','ch.idDetallecurso')
         ->join('semestres as s','s.id','=','dc.idSemestre')
         ->where('s.id','=',$id)
         ->join('cursos as c','c.id','=','dc.idCurso')
-        ->join('detalleaulas as da','da.idDetallecurso','=','dc.id')
-        ->join('aulas as a','da.idAula','=','a.id')
-        ->select('c.nombre','s.semestre')
-        ->get();
-
-        $cargahoraria = DB::table('docentes as d','d.estado','=','1')
-        ->join('detallecursos as dc','d.id','=','dc.idDocente')
-        ->join('semestres as s','s.id','=','dc.idSemestre')
-        ->join('cargahorarias as ch','ch.idDetallecurso','=','dc.id')
-        ->where('s.id','=',$id)
-        ->join('cursos as c','c.id','=','dc.idCurso')
-        ->join('detalleaulas as da','da.idDetallecurso','=','dc.id')
+        ->join('detalleaulas as da','da.idCargahoraria','=','ch.id')
         ->join('aulas as a','da.idAula','=','a.id')
         ->select('c.nombre','s.semestre')
         ->get();
 
         $user=Auth::user()->id;
-        $docente=Docente::where('idUsuario','=',$user)->first();
-         
+
+        $cargahoraria = DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',$user)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('cargahorarias as ch','dc.id','=','ch.idDetallecurso')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->join('detalleaulas as da','da.idCargahoraria','=','ch.id')
+        ->join('aulas as a','da.idAula','=','a.id')
+        ->join('cargas as ca','ch.idCarga','=','ca.id')
+        ->select('c.nombre','s.semestre','da.horas','ca.carga','da.dia','da.inicio','da.fin','a.local','a.numero','ch.id')
+        ->get();
 
         
+        $docente=Docente::where('idUsuario','=',$user)->first();
+         
+         
+        
         $pdf = \PDF::loadView('detallecursos.horariosemanal', ['docente'=>$docente,'detallecurso'=>$detallecurso,'cargahoraria'=>$cargahoraria,'semestre'=>$semestre]);
-        return $pdf->stream('horariosemanal.pdf');
-               
+        return $pdf->setPaper('A4', 'landscape')->stream('horariosemanal.pdf');
+            
     }
 
 

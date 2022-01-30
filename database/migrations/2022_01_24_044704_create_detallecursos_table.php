@@ -16,6 +16,11 @@ class CreateDetallecursosTable extends Migration
         Schema::create('detallecursos', function (Blueprint $table) {
             $table->id();
             $table->integer('año');
+            $table->integer('horas');
+            $table->integer('horasT');
+            $table->integer('horasL');
+            $table->integer('horasP');
+            $table->string('seccion');
             $table->integer('idSemestre');
             $table->integer('idDocente');
             $table->integer('idCurso');

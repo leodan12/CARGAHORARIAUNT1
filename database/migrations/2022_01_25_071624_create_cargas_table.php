@@ -16,7 +16,6 @@ class CreateCargasTable extends Migration
         Schema::create('cargas', function (Blueprint $table) {
             $table->id();
             $table->string('carga');
-            $table->integer('idCurso');
             $table->timestamps();
         });
     }

@@ -54,7 +54,7 @@
         
           
           <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" rel="tooltip" title="Inicio" data-placement="bottom" href="/egresado">
+            <a class="nav-link" rel="tooltip" title="Inicio" data-placement="bottom" href="/docente">
                 <img class="img-fluid" src="../../img/inicio.png">
                 
                  
@@ -64,7 +64,7 @@
             </a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" rel="tooltip" title="Egresado" data-placement="bottom" href="/egresado">
+            <a class="nav-link" rel="tooltip" title="Docente" data-placement="bottom" href="/docente">
               <h5> DOCENTE</h5>       
             </a>
           </li>
