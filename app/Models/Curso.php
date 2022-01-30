@@ -9,14 +9,15 @@ class Curso extends Model
 {
     use HasFactory;
 
-    public function detalleaulas() {
-        
-        return $this->hasMany(Detalleaula::class,'idCurso','id');
-
-     }
+    
      public function detallecursos() {
         
         return $this->hasMany(Detallecurso::class,'idCurso','id');
 
      }
+     public function cargas() {
+        
+      return $this->hasMany(Carga::class,'idCarga','id');
+
+   }
 }

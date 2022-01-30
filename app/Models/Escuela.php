@@ -21,4 +21,8 @@ class Escuela extends Model
 
      }
 
+     public function facultad(){
+      return $this->hasOne('App\Models\Facultad','id','idFacultad');
+  }
+
 }

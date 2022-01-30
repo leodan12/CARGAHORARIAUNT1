@@ -25,4 +25,8 @@ class Docente extends Model
 
      }
 
+     public function usuario(){
+        return $this->hasOne('App\Models\Usuario','id','idUsuario');
+    }
+
 }

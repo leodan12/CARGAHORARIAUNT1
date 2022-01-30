@@ -13,7 +13,7 @@ class Detalleaula extends Model
         return $this->hasOne('App\Models\Aula','id','idAula');
     }
 
-    public function curso(){
-        return $this->hasOne('App\Models\Curso','id','idCurso');
+    public function cargahoraria(){
+        return $this->hasOne('App\Models\Cargahoraria','id','idCargahoraria');
     }
 }

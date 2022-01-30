@@ -52,6 +52,7 @@ Route::get('/users', 'UserController@index');
 Route::get('/perfiles', 'PerfilController@index');
 
 Route::get('/asignarcursos', 'DetallecursoController@index');
+Route::get('/horario', 'DetallecursoController@semestres');
 Route::get('/cursos', 'CursoController@index');
  
 
@@ -59,6 +60,10 @@ Route::get('/cursos', 'CursoController@index');
 
 //rutas de metodos adicionales
 //Route::get('/Encuesta/{id}','EncuestaController@estado')->name('estadoencuesta');
+//Route::get('/horariosemanal','DetalleCursoController@horariosemanal')->name('horariosemanal');
+Route::get('/horariosemanal/{id}','DetalleCursoController@horariosemanal')->name('horariosemanal');
+
+//Route::get('/horario','DetalleCursoController@semestres')->name('horario');
 
 
 // cancelaciones 
@@ -72,6 +77,7 @@ Route::get('cancelarUsuario', function () {
  
 
 
+//rutas de cancelacion
 Route::get('cancelarDetalleCursos', function () {
     return redirect()->route('detallecurso.index')->with('datos','Accion cancelada..!');
 })->name('cancelarDetalleCursos');  //le damos nombre a la ruta

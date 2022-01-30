@@ -8,11 +8,11 @@
     </div>
     <div class="row row-cols-lg-1  no-gutters">
       <div class="col-12 col-md-4 ">
-        <a class="portfolio-item" href="/experiencialaborales">
+        <a class="portfolio-item" href="/horario">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">EXPERIENCIA LABORAL</div>
-              <p class="mb-0">Registra tu experiencia laboral, ahora!</p>
+              <div class="h2">HORARIO SEMANAL</div>
+              <p class="mb-0">Generar el horario semanal!</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/matriculas.jpg" alt="">
@@ -22,8 +22,8 @@
         <a class="portfolio-item" href="/publicaciones">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">PUBLICACIONES</div>
-              <p class="mb-0">Realiza tus publicaciones aquí!</p>
+              <div class="h2">REPORTE CARGA-HORARIA</div>
+              <p class="mb-0">Generar reporte de carga horaria!</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
