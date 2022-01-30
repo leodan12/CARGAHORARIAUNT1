@@ -18,6 +18,7 @@ class CreateCargahorariasTable extends Migration
             $table->double('horas');
             $table->integer('idDetallecurso');
             $table->integer('idCarga');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

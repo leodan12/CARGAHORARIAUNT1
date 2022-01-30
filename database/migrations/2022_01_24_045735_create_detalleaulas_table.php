@@ -20,6 +20,7 @@ class CreateDetalleaulasTable extends Migration
             $table->string('fin');
             $table->integer('idAula');
             $table->integer('idCargahoraria');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }
