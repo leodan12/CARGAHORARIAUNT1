@@ -34,8 +34,8 @@
         <a class="portfolio-item" href="/alumno">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2"> OPCION 3</div>
-              <p class="mb-0">Gestionar Opcion 3</p>
+              <div class="h2">ASIGNAR HORAS</div>
+              <p class="mb-0">Asignar horas totales por curso</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/ALUMNOS.jpg" alt="">

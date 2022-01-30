@@ -109,7 +109,7 @@
     <nav class="navbar navbar-light ">
       <a href="{{route('detallecurso.create')}}" class="btn btn-success" style="border-radius: 40px;"><i class="fas fa-plus"></i>ASIGNAR CURSOS A LOS DOCENTES</a><br>
      <form class="form-inline my-2 my-lg-0 float-right" method="GET">  <!--Para que se vaya a la derecha de la pagina float-->
-          <input name="buscarpor" class="form-control col-8 mr-2" type="search"  style="border-radius: 40px;" placeholder="Buscar por Nombre" aria-label="Search" value="{{ $buscarpor }}">
+          <input name="buscarpor" class="form-control col-8 mr-2" type="search"  style="border-radius: 40px;" placeholder="Buscar por Año" aria-label="Search" value="{{ $buscarpor }}">
            <button class="btn btn-success my-2 my-sm-0" style="border-radius: 40px;" type="submit">Buscar <i class="fa fa-search"></i></button>
       </form>  <!--buscador por      -->
   
