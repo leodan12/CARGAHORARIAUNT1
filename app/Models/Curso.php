@@ -15,9 +15,5 @@ class Curso extends Model
         return $this->hasMany(Detallecurso::class,'idCurso','id');
 
      }
-     public function cargas() {
-        
-      return $this->hasMany(Carga::class,'idCarga','id');
-
-   }
+     
 }

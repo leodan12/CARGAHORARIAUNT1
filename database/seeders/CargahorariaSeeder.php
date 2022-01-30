@@ -14,13 +14,17 @@ class CargahorariaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cargahorarias')->insert(['horas' => '6','idCarga' => '1','idDetallecurso' => '1',]);
-        DB::table('cargahorarias')->insert(['horas' => '2','idCarga' => '2','idDetallecurso' => '1',]);
-        DB::table('cargahorarias')->insert(['horas' => '1','idCarga' => '3','idDetallecurso' => '1',]);
-        DB::table('cargahorarias')->insert(['horas' => '2','idCarga' => '4','idDetallecurso' => '1',]);
-        DB::table('cargahorarias')->insert(['horas' => '3','idCarga' => '5','idDetallecurso' => '1',]);
-        DB::table('cargahorarias')->insert(['horas' => '2','idCarga' => '6','idDetallecurso' => '1',]);
-        DB::table('cargahorarias')->insert(['horas' => '1','idCarga' => '7','idDetallecurso' => '1',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '1','idDetallecurso' => '10',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '1','idDetallecurso' => '11',]);
+
+        DB::table('cargahorarias')->insert(['idCarga' => '2','idDetallecurso' => '1',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '3','idDetallecurso' => '1',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '4','idDetallecurso' => '1',]);
+
+        DB::table('cargahorarias')->insert(['idCarga' => '5','idDetallecurso' => '1',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '6','idDetallecurso' => '1',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '7','idDetallecurso' => '1',]);
         
+       
     }
 }

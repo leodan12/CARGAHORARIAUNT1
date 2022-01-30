@@ -14,13 +14,13 @@ class CargaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cargas')->insert(['carga' => 'clases','idCurso' => '1',]);
-        DB::table('cargas')->insert(['carga' => 'preparacion y evaluacion','idCurso' => '1',]);
-        DB::table('cargas')->insert(['carga' => 'capacitacion','idCurso' => '1',]);
-        DB::table('cargas')->insert(['carga' => 'consejeria','idCurso' => '1',]);
-        DB::table('cargas')->insert(['carga' => 'Investigacion','idCurso' => '1',]);
-        DB::table('cargas')->insert(['carga' => 'responsabilidad social universitaria','idCurso' => '1',]);
-        DB::table('cargas')->insert(['carga' => 'asesoria de tesis','idCurso' => '1',]);
+        DB::table('cargas')->insert(['carga' => 'curso',]);
+        DB::table('cargas')->insert(['carga' => 'preparacion y evaluacion',]);
+        DB::table('cargas')->insert(['carga' => 'capacitacion',]);
+        DB::table('cargas')->insert(['carga' => 'consejeria',]);
+        DB::table('cargas')->insert(['carga' => 'Investigacion',]);
+        DB::table('cargas')->insert(['carga' => 'responsabilidad social universitaria',]);
+        DB::table('cargas')->insert(['carga' => 'asesoria de tesis y examenes profesionales',]);
         
     }
 }

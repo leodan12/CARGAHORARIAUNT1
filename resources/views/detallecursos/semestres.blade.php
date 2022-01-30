@@ -109,7 +109,7 @@
     <nav class="navbar navbar-light ">
       <br> 
      <form class="form-inline my-2 my-lg-0 float-right" method="GET">  <!--Para que se vaya a la derecha de la pagina float-->
-          <input name="buscarpor" class="form-control col-8 mr-2" type="search"  style="border-radius: 40px;" placeholder="Buscar por Nombre" aria-label="Search" value="{{ $buscarpor }}">
+          <input name="buscarpor" class="form-control col-8 mr-2" type="search"  style="border-radius: 40px;" placeholder="Buscar por Semestre" aria-label="Search" value="{{ $buscarpor }}">
            <button class="btn btn-success my-2 my-sm-0" style="border-radius: 40px;" type="submit">Buscar <i class="fa fa-search"></i></button>
       </form>  <!--buscador por      -->
   
@@ -122,7 +122,13 @@
           <tr>
             <th scope="col"style="text-align: center">ID  </th>
             <th scope="col" style="text-align: center">SEMESTRE</th>
-            <th scope="col" style="text-align: center">VER HORARIO</th>
+            <th scope="col" style="text-align: center">GENERAR HORARIO</th>
+            <th scope="col"style="text-align: center">ID  </th>
+            <th scope="col" style="text-align: center">CARGA HORARIA</th>
+            <th scope="col"style="text-align: center">ID  </th>
+            <th scope="col" style="text-align: center">DECLARACION Nro 1</th>
+            <th scope="col"style="text-align: center">ID  </th>
+            <th scope="col" style="text-align: center">DECLARACION Nro 2</th>
              </tr>
         </thead>
         <tbody>
@@ -135,6 +141,34 @@
                         <span><b>VER</b></span>
                         <span>
                           <i class="fas fa-eye" aria-hidden="true"></i>
+                        </span>
+                      </a> 
+                    </td>
+                    <td style="text-align: center">{{$k->id}}</td>
+                    
+                    <td class="menu" data-animation="to-left">  
+                      <a href="{{route('cargahorariadeclaracion',$k->id)}}"> 
+                        <span><b>GENERAR</b></span>
+                        <span>
+                          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                        </span>
+                      </a> 
+                    </td>
+                    <td style="text-align: center">{{$k->id}}</td>
+                    <td class="menu" data-animation="to-left">  
+                      <a href="{{route('declaracionjurada1',$k->id)}}"> 
+                        <span><b>GENERAR</b></span>
+                        <span>
+                          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                        </span>
+                      </a> 
+                    </td>
+                    <td style="text-align: center">{{$k->id}}</td>
+                    <td class="menu" data-animation="to-left">  
+                      <a href="{{route('declaracionjurada2',$k->id)}}"> 
+                        <span><b>GENERAR</b></span>
+                        <span>
+                          <i class="fas fa-file-pdf" aria-hidden="true"></i>
                         </span>
                       </a> 
                     </td>

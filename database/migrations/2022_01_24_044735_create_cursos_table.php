@@ -18,6 +18,7 @@ class CreateCursosTable extends Migration
             $table->string('nombre');
             $table->string('ciclo');
             $table->string('codigo');
+            $table->string('categoria');
             $table->integer('creditos');
             $table->boolean('estado')->default(true);
             $table->timestamps();
