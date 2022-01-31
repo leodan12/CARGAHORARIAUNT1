@@ -20,11 +20,11 @@
       </div>
        
       <div class="col-12 col-md-4 ">
-        <a class="portfolio-item" href="/responderencuestas">
+        <a class="portfolio-item" href="/cargahorariadocente">
           <div class="caption">
             <div class="caption-content">
-              <div class="h2">DECLARACION JURADA </div>
-              <p class="mb-0">DECLARACION JURADA DE LOS DOCENTES!</p>
+              <div class="h2">GESTIONAR CARGA HORARIA </div>
+              <p class="mb-0">Gestionar la carga horaria del docente!</p>
             </div>
           </div>
           <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">

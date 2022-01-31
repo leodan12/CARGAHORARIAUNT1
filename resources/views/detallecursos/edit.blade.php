@@ -1,4 +1,4 @@
-@extends('layouts.plantillaAdministrador')
+@extends('layouts.plantillaDirector')
 
 @section('contenido')
 
@@ -46,15 +46,7 @@
             </select>
 
           </div>
-          <div class="form-group col-md-3">
-            <label for="año">AÑO:</label>
-          <input type="number" class="form-control @error('año') is-invalid @enderror" id="año" name="año"  style="border-radius: 40px;" value="{{$detallecurso->año}}">
-            @error('año')
-                <span class="invalid-feedback" role="alert">
-                     <strong>{{$message}}</strong>
-                 </span>                  
-            @enderror
-         </div>
+          
           <div class="from-group col-md-3">
             <label for="semestre">SEMESTRE:</label>
             <select name="semestre" id="semestre" class="form-control"   style="border-radius: 40px;">
@@ -65,6 +57,70 @@
             </select>
 
           </div>
+          <div class="form-group col-md-3">
+            <label for="año">AÑO:</label>
+          <input type="number" class="form-control @error('año') is-invalid @enderror" id="año" name="año"  style="border-radius: 40px;" value="{{$detallecurso->año}}">
+            @error('año')
+                <span class="invalid-feedback" role="alert">
+                     <strong>{{$message}}</strong>
+                 </span>                  
+            @enderror
+         </div>
+
+         <div class="form-group col-md-3">
+          <label for="seccion">SECCION:</label>
+          <input type="text" class="form-control @error('seccion') is-invalid @enderror" id="seccion" name="seccion"  style="border-radius: 40px;" value="{{$detallecurso->seccion}}" required  >
+          @error('seccion')
+              <span class="invalid-feedback" role="alert">
+                   <strong>{{$message}}</strong>
+               </span>                  
+          @enderror
+     </div>
+     <div class="form-group col-md-3">
+      <label for="nroAlumnos">NUMERO DE ALUMNOS:</label>
+      <input type="number" class="form-control @error('nroAlumnos') is-invalid @enderror" id="nroAlumnos" name="nroAlumnos"  style="border-radius: 40px;" value="{{$detallecurso->nroAlumnos}}" required  >
+      @error('nroAlumnos')
+          <span class="invalid-feedback" role="alert">
+               <strong>{{$message}}</strong>
+           </span>                  
+      @enderror
+ </div>
+ <div class="form-group col-md-3">
+  <label for="horas">HORAS TOTALES:</label>
+  <input type="number" class="form-control @error('horas') is-invalid @enderror" id="horas" name="horas"  style="border-radius: 40px;" value="{{$detallecurso->horas}}" required  >
+  @error('horas')
+      <span class="invalid-feedback" role="alert">
+           <strong>{{$message}}</strong>
+       </span>                  
+  @enderror
+</div>
+<div class="form-group col-md-3">
+<label for="horasT">HORAS TEORIA:</label>
+<input type="number" class="form-control @error('horasT') is-invalid @enderror" id="horasT" name="horasT"  style="border-radius: 40px;" value="{{$detallecurso->horasT}}" required  >
+@error('horasT')
+  <span class="invalid-feedback" role="alert">
+       <strong>{{$message}}</strong>
+   </span>                  
+@enderror
+</div>
+<div class="form-group col-md-3">
+<label for="horasP">HORAS PRACTICA:</label>
+<input type="number" class="form-control @error('horasP') is-invalid @enderror" id="horasP" name="horasP"  style="border-radius: 40px;" value="{{$detallecurso->horasP}}" required  >
+@error('horasP')
+  <span class="invalid-feedback" role="alert">
+       <strong>{{$message}}</strong>
+   </span>                  
+@enderror
+</div>
+<div class="form-group col-md-3">
+<label for="horasL">HORAS LABORATORIO:</label>
+<input type="number" class="form-control @error('horasL') is-invalid @enderror" id="horasL" name="horasL"  style="border-radius: 40px;" value="{{$detallecurso->horasL}}" required  >
+@error('horasL')
+  <span class="invalid-feedback" role="alert">
+       <strong>{{$message}}</strong>
+   </span>                  
+@enderror
+</div>
 
              
          <div class="from-group col-md-3">

@@ -83,6 +83,14 @@
   table tr:hover {
     background-color: #E3E4E5;
   }
+
+  table td {
+   
+  text-align: center;
+  padding: 5px;
+   
+  max-height: 70px;
+}
   
   </style>
 <div class="container-fluid ">
@@ -117,15 +125,19 @@
 
       <br>
       <div class="table-responsive"  style="border-radius: 12px;">
-        <table class="table" style="border-radius: 12px;">
+        <table class="table td" style="border-radius: 12px;">
         <thead class="thead-dark">
           <tr>
-            <th scope="col"style="text-align: center">ID </th>
-            <th scope="col" style="text-align: center">AULA</th>
-            <th scope="col" style="text-align: center">CARGA HORARIA</th>
             <th scope="col" style="text-align: center">DIA</th>
-            <th scope="col" style="text-align: center">INICIO</th>
-            <th scope="col" style="text-align: center">FIN</th>
+            <th scope="col" style="text-align: center">HORARIO</th> 
+            <th scope="col" style="text-align: center">CURSO/CARGA HORARIA</th>
+            
+            <th scope="col" style="text-align: center">LOCAL</th>
+            <th scope="col" style="text-align: center">AULA</th>
+            <th scope="col" style="text-align: center">HORAS</th>
+            <th scope="col" style="text-align: center">DOCENTE</th>
+            
+           
             <th scope="col" style="text-align: center">ESTADO</th>
             <th scope="col" style="text-align: center">EDITAR</th>
             <th scope="col" style="text-align: center;" >ELIMINAR</th>
@@ -134,12 +146,23 @@
         <tbody>
             @foreach($detalleaula as $k)
                 <tr>
-                    <td style="text-align: center">{{$k->id}}</td>
-                    <td style="text-align: center">{{$k->aula->ubicacion}}</td>
-                    <td style="text-align: center">{{$k->cargahoraria->horas}}</td>
-                    <td style="text-align: center">{{$k->dia}}</td>
-                    <td style="text-align: center">{{$k->inicio}}</td>
-                    <td style="text-align: center">{{$k->fin}}</td>
+                  <td style="text-align: center">{{$k->dia}}</td>
+                  <td style="text-align: center">{{$k->inicio}} - {{$k->fin}}</td>
+                   
+                    @if ($k->cargahoraria->carga->carga == 'curso')
+                        <td style="text-align: center"> {{$k->cargahoraria->detallecurso->curso->nombre}}</td>
+                      @else
+                        <td style="text-align: center"> {{$k->cargahoraria->carga->carga}}</td>
+                      @endif
+                      <td style="text-align: center">{{$k->aula->local}}  </td>
+                   
+                      <td style="text-align: center"> {{$k->aula->numero}}</td>
+                      <td style="text-align: center"> {{$k->horas}}</td>
+                   
+                    <td style="text-align: center">{{$k->cargahoraria->detallecurso->docente->nombres}} {{$k->cargahoraria->detallecurso->docente->apellidos}} </td>
+                       
+                    
+                    
                     <td style="text-align: center">{{$k->estado}}</td>
                     <td class="menu" data-animation="to-left">  
                       <a href="{{route('detalleaula.edit',$k->id)}}"> 
@@ -173,9 +196,8 @@
             @endforeach
         </tbody>
     </table>  
-    <a href="/inicio" style="margin-left: 95%" class="btn btn-info btn-sm">
-      <i class="fas fa-backward"></i> Volver</a>
-      <div class="align-center" style="margin-left: 45%"><h5></h5></div>
+   
+      <div class="align-center" style="margin-left: 45%"> {{$detalleaula->links()}} </div>
 </div>
-
+ 
 @endsection

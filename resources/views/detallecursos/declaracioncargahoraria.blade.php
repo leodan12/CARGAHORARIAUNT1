@@ -22,9 +22,7 @@
             <table class="table"  style="margin-left: 30px;">
                 <tbody>
                     <tr>
-                        <td colspan="5"  style="text-align: center"><h3 class="text-center"> <b>    Carga Horaria - Declaración de Carga Horaria Asignada a Docentes de la Sede Central, en las 
-                            Subsedes Descentralizadas
-                            </b>  </h3></td>
+                        <td colspan="5"  style="text-align: center"><h3 class="text-center"> <b>   DECLARACION DE CARGA HORARIA ASIGNADA  </b>  </h3></td>
                     </tr>
                     
                     
@@ -51,10 +49,8 @@
                         <td   style=" border: inset 0pt"><b> FACULTAD : </b>&nbsp;&nbsp; {{$docente->escuela->facultad->facultad }} </td>
                     
                      
-                        <td style=" border: inset 0pt"><b>ESCUELA : </b>&nbsp;&nbsp; {{$docente->escuela->escuela }} </td>
+                        <td style=" border: inset 0pt"><b>DPTO ACADEMICO : </b>&nbsp;&nbsp;Dpto. de {{$docente->escuela->escuela }} </td>
                        
-                        <td style=" border: inset 0pt"><b>SEMESTRE : </b>&nbsp;&nbsp;{{$semestre->semestre}} </td>
-                    
                     </tr> 
                     
                 </tbody>  
@@ -83,127 +79,139 @@
                 </tbody>  
             </table>
         </div>
-        <br>
         <div class="row" >
             
             <table class="table"  style="margin-left: 30px;">
                 <tbody>
                     <tr>
-                        <td   style=" border: inset 0pt"> II. TRABAJO LECTIVO.- Datos completos y con claridad</td>
+                        <td   style=" border: inset 0pt"><b> AÑO ACADEMICO: </b>  {{$semestre->año}} </td>
+                    
+                     
+                        <td   style=" border: inset 0pt"><b> CICLO(sem): </b>  {{$semestre->semestre}} </td>
+                        <td style=" border: inset 0pt"><b> INICIO: </b>{{$semestre->inicio}} </td>
+                        <td style=" border: inset 0pt"><b> FINAL: </b>{{$semestre->fin}} </td>
+                       
+                    </tr> 
+                    
+                </tbody>  
+            </table>
+        </div>
+        <br>
+        <div class="row" >
+            
+            <table class="table"  style="margin-left: 10px;">
+                <tbody>
+                    <tr>
+                        <td  colspan="11" style=" border: inset 1pt"> 1. TRABAJO LECTIVO.- Datos completos y con claridad</td>
                     
                     </tr>
+                    <tr>
+                        <td style=" border: inset 1pt"> <b>CODIGO</b></td>
+                        <td style=" border: inset 1pt"> <b>NOMBRE</b></td>
+                        <td style=" border: inset 1pt"> <b>CUR </b>   </td>
+                        <td style=" border: inset 1pt"> <b>ESCUELA </b>   </td>
+                        <td style=" border: inset 1pt"> <b>CIC</b>   </td>
+                        <td style=" border: inset 1pt"> <b>SEC</b>   </td>
+                        <td style=" border: inset 1pt"> <b>NRO AL</b>   </td>
+                        <td style=" border: inset 1pt"> <b>HT</b>   </td>
+                        <td style=" border: inset 1pt"> <b>HP</b>   </td>
+                        <td style=" border: inset 1pt"> <b>HL</b>   </td>
+                        <td style=" border: inset 1pt"> <b>TOTAL</b>   </td>
+                    </tr>
+                    @foreach($curso as $key )
                     
+                    @if($key->codigo != 'CNL')
+                    <tr>
+                        <td   style=" border: inset 1pt">{{$key->codigo}}</td>
+                        <td   style=" border: inset 1pt">{{$key->nombre}}</td>
+                         
+                        
+                        <td   style=" border: inset 1pt">{{$key->categoria}}</td>
+                        <td   style=" border: inset 1pt">{{$escuela->escuela}}</td>
+                        <td   style=" border: inset 1pt">{{$key->ciclo}}</td>
+                        <td   style=" border: inset 1pt">{{$key->seccion}}</td>
+                        <td   style=" border: inset 1pt">{{$key->nroAlumnos}}</td>
+                       
+                            @php
+                                $ch = 0;
+                                $cf = 0;
+                            @endphp
+                            @foreach($cargahoraria as $k)
+                        
+                                @if($k->id == $key->id)
+                                    @if($ch < 1)
+                                    <td   style=" border: inset 1pt">
+                                       {{$k->horasT}}  
+                                    </td>
+                                    <td   style=" border: inset 1pt">
+                                        {{$k->horasP}}    
+                                    </td>
+                                    <td   style=" border: inset 1pt">
+                                        {{$k->horasL}}
+                                    </td>
+                                    @endif
+                                   
+                                    @php
+                                        $ch=$ch+1;
+                                    @endphp 
+                                @endif
+                            @endforeach   
+                        
+                        
+                        @php
+                            $cht = 0;
+                        @endphp
+                        <td   style=" border: inset 1pt"> @foreach($cargahoraria as $k)
+                        
+                            @if($k->id == $key->id)
+                                @php
+                                $cf = $cf + $key->horas;
+                                @endphp
+                                @if($cht < 1)
+                                {{$key->horas}}
+                                
+                                @endif
+                               
+                                @php
+                                    $cht=$cht+1;
+                                @endphp 
+                            @endif
+                        @endforeach  
+                    </td>
+                    </tr> 
+                    @endif
+                    
+                               
+               
+                @endforeach 
+                
+                    @foreach($cargahoraria as $key )
+                    @if($key->idCarga != 1)
+                    <tr>
+
+                        <td  colspan="5" style=" border: inset 1pt"> {{$key->idCarga}}. {{$key->carga}}: {{$key->descripcion}}  </td>
+                        <td  colspan="5"  style=" border: inset 1pt">  </td>
+                        <td  colspan="1"  style=" border: inset 1pt">  {{$key->horas}} </td>
+                    @php
+                        $cf = $cf + $key->horas;
+                    @endphp
+                    </tr>
+                    @endif
+                    
+                    @endforeach
+                
+                    <tr>
+                        <td  colspan="10"  style=" border: inset 1pt; text-align:right">  Total :  </td>
+                        <td  colspan="1"  style=" border: inset 1pt; text-align:right"> {{ $cf }}  </td>  
+                    </tr>
                 </tbody>  
             </table>
         </div>
         <br>
 
-        <div class="row" >
-            
-            <table class="table"  style="margin-left: 10px;">
-                  <tbody>
-                    <tr>
-                        <td style=" border: inset 1pt"> <b>CODIGO</b></td>
-                        <td style=" border: inset 1pt"> <b>NOMBRE</b></td>
-                        <td style=" border: inset 1pt"> <b>HORARIO </b>   </td>
-                        <td style=" border: inset 1pt"> <b>CURSO</b>   </td>
-                        <td style=" border: inset 1pt"> <b>ESCUELA </b>   </td>
-                        <td style=" border: inset 1pt"> <b>CICLO</b>   </td>
-                        <td style=" border: inset 1pt"> <b>HORAS</b>   </td>
-                        <td style=" border: inset 1pt"> <b>TOTAL</b>   </td>
-                    </tr>
-                    @foreach($curso as $key )
-                    
-                        @if($key->codigo != 'CNL')
-                        <tr>
-                            <td   style=" border: inset 1pt">{{$key->codigo}}</td>
-                            <td   style=" border: inset 1pt">{{$key->nombre}}</td>
-                            <td   style=" border: inset 1pt">
-                            @foreach($cargahoraria as $k)
-                            
-                                @if($k->id == $key->id)
-                                    {{$k->dia}} : {{$k->inicio}}-{{$k->fin}} <b>/</b> 
-                                @endif
-                            @endforeach
-                            </td>
-                            
-                            <td   style=" border: inset 1pt">{{$key->categoria}}</td>
-                            <td   style=" border: inset 1pt">{{$escuela->escuela}}</td>
-                            <td   style=" border: inset 1pt">{{$key->ciclo}}</td>
-                            <td   style=" border: inset 1pt">
-                                @php
-                                    $ch = 0;
-                                @endphp
-                                @foreach($cargahoraria as $k)
-                            
-                                    @if($k->id == $key->id)
-                                        @if($ch < 1)
-                                        Teo:{{$k->horasT}} Lab:{{$k->horasL}} Pract:{{$k->horasP}}    
-                                        @endif
-                                       
-                                        @php
-                                            $ch=$ch+1;
-                                        @endphp 
-                                    @endif
-                                @endforeach   
-                            
-                            </td>
-                            @php
-                                $cht = 0;
-                            @endphp
-                            <td   style=" border: inset 1pt"> @foreach($cargahoraria as $k)
-                            
-                                @if($k->id == $key->id)
-                                    @if($cht < 1)
-                                    {{$k->horas}}
-                                    @endif
-                                   
-                                    @php
-                                        $cht=$cht+1;
-                                    @endphp 
-                                @endif
-                            @endforeach  
-                        </td>
-                        </tr> 
-                        @endif
-                        
-                                   
-                   
-                    @endforeach  
-                    
-                    
-                </tbody>  
-            </table>
-        </div>
-        <br>
-        <div class="row" >
-            
-            <table class="table"  style="margin-left: 30px;">
-                <tbody>
-                    <tr>
-                        <td   style=" border: inset 0pt; text-align: justify;">(*) Indique las fechas de Inicio y término si el curso es consignado para los casos de las Sedes de Cascas, Tayabamba y 
-                            Huamachuco, concordando con su Licencia por Comisión de Servicios.</td>
-                    
-                    </tr>
-                    
-                </tbody>  
-            </table>
-        </div>
-        <br>
-        <div class="row" >
-            
-            <table class="table"  style="margin-left: 30px;">
-                <tbody>
-                    <tr>
-                        <td   style=" border: inset 0pt; text-align: justify;">NOTA: Los docentes que suscriben la presente declaración se sujetan a lo dispuesto en el Reglamento de funcionamiento 
-                            de Sedes Descentralizadas (R.C.U. Nro 072-CU-COG-05/UNT) y Directiva Nrp 01-07/VAC/UNT de Racionalización 
-                            Académico del Personal docente de sedes descentralizadas (R.C.U. Nro 576-07/UNT)</td>
-                    
-                    </tr>
-                    
-                </tbody>  
-            </table>
-        </div>
+          
+         
+        
 
         <div class="row"> 
             <table class="table"  style="margin-left: 60px;">

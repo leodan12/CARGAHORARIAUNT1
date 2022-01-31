@@ -36,7 +36,9 @@ Route::resource('perfil','PerfilController');
 Route::resource('usuario','UserController');
 Route::resource('detallecurso','DetallecursoController');
 Route::resource('detalleaula','DetalleaulaController');
- 
+Route::resource('cargahoraria','CargahorariaController');
+
+
 
 //para entrar con diferente perfil
 
@@ -56,7 +58,11 @@ Route::get('/asignarcursos', 'DetallecursoController@index');
 Route::get('/asignaraulas', 'DetalleaulaController@index');
 Route::get('/horario', 'DetallecursoController@semestres');
 Route::get('/cursos', 'CursoController@index');
- 
+
+Route::get('/cargahorariadocente', 'CargahorariaController@index');
+
+Route::get('/cargahorario/{id}', 'CargahorariaController@cargahorario')->name('cargahorario');
+
 
 //rutas de metodos adicionales
  
@@ -64,6 +70,11 @@ Route::get('/horariosemanal/{id}','DetalleCursoController@horariosemanal')->name
 Route::get('/cargahorariadeclaracion/{id}','DetalleCursoController@cargahorariadeclaracion')->name('cargahorariadeclaracion');
 Route::get('/declaracionjurada1/{id}','DetalleCursoController@declaracionjurada1')->name('declaracionjurada1');
 Route::get('/declaracionjurada2/{id}','DetalleCursoController@declaracionjurada2')->name('declaracionjurada2');
+
+Route::get('/asignaraula/{id}','CargahorariaController@asignaraula')->name('asignaraula');
+Route::post('/store2','DetalleaulaController@store2')->name('store2');
+
+Route::get('/declaracioncargahoraria/{id}','DetalleCursoController@declaracioncargahoraria')->name('declaracioncargahoraria');
 
 // cancelaciones 
 Route::get('cancelarPerfil', function () {
@@ -85,7 +96,10 @@ Route::get('cancelarDetalleAulas', function () {
     return redirect()->route('detalleaula.index')->with('datos','Accion cancelada..!');
 })->name('cancelarDetalleAulas');  //le damos nombre a la ruta
  
-
+Route::get('cancelarcarga', function () {
+    return redirect()->route('cargahoraria.index')->with('datos','Accion cancelada..!');
+})->name('cancelarcarga');  //le damos nombre a la ruta
+ 
 
 //rutas usadas por javascript
 Route::Get('/usuarioslista', 'UserController@usuarios');

@@ -1,4 +1,4 @@
-@extends('layouts.plantillaDirector')
+@extends('layouts.plantillaDocente')
 
 @section('contenido')
 
@@ -22,7 +22,7 @@
   </div>
   @endif
   
-        <form method="POST"  action="{{route('detalleaula.store')}}" > <!--para que vaya a la ruta esa y luego vaya al controlador a llamar ee metodo-->
+        <form method="POST"  action="{{route('store2')}}" > <!--para que vaya a la ruta esa y luego vaya al controlador a llamar ee metodo-->
             @csrf   
            
             <div class="form-row">
@@ -31,13 +31,13 @@
                     <label for="cargahoraria">CURSO/CARGA HORARIA:</label>
                     <select name="cargahoraria" id="cargahoraria" class="form-control"   style="border-radius: 40px;" required  >
                         <option value="{{ old('cargahoraria') }}" disabled selected> SELECCIONE UNA OPCION:</option>
-                        @foreach ( $cargahoraria as $itemp)
+                        @foreach ( $cargahoraria2 as $itemp)
                         @foreach($carga as $k)
                             @if ($k->id == $itemp->idCarga)
                             @if ($k->carga == 'curso')
-                            <option value="{{$itemp->id}}">{{$itemp->detallecurso->docente->nombres}} {{$itemp->detallecurso->docente->apellidos}} / {{$itemp->detallecurso->curso->nombre}}</option>
+                            <option value="{{$itemp->id}}"> {{$itemp->nombre}}</option>
                             @else
-                            <option value="{{$itemp->id}}">{{$itemp->detallecurso->docente->nombres}} {{$itemp->detallecurso->docente->apellidos}} / {{$itemp->carga->carga}}</option>
+                            <option value="{{$itemp->id}}"> {{$itemp->carga}}</option>
                             @endif
                                 
                             @endif
@@ -110,7 +110,6 @@
                 @enderror
            </div>
          </div>
-         
          <div class="form-row">
             <div class="col col-4"></div>
             <div class="form-group col-md-4">
@@ -145,48 +144,6 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
  <script>
-     /*
-     $(document).ready(function(){
-
-        //funcion para verificar el usuario
-
-        $("#usuario").keyup(function(){
-    		 
-        var usuario = $(this).val();
-        var cont = 0    
-        $.get('/usuarioslista', function(data){ 
-         //   console.log(data);
-             for(var i=0; i<data.length;i++){
-                 if(data[i].name == usuario){
-                 cont=cont+1
-                 }
-             }
-             if(cont>=1){
-                document.getElementById("usuario").style.borderColor="#FF0000"
-             }
-             else if(cont==0){
-                document.getElementById("usuario").style.borderColor="#0fff12"
-             }  
-             
-	});
-
-	});
-
-
-
-        //funcion para verificar la contraseña
-
-        $("#confirmpassword").keyup(function(){
-    		if($("#password").val() === $("#confirmpassword").val()){
-         //Si son iguales
-         document.getElementById("confirmpassword").style.borderColor="#0fff12"
-        }else if($("#password").val() !== $("#confirmpassword").val()){
-         //Si no son iguales
-         document.getElementById("confirmpassword").style.borderColor="#FF0000"
-    } 
-	});
-
      
-    });*/
  </script>
 

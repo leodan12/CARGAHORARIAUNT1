@@ -25,6 +25,9 @@ class CargahorariaSeeder extends Seeder
         DB::table('cargahorarias')->insert(['idCarga' => '6','idDetallecurso' => '1',]);
         DB::table('cargahorarias')->insert(['idCarga' => '7','idDetallecurso' => '1',]);
         
-       
+        DB::table('cargahorarias')->insert(['idCarga' => '1','idDetallecurso' => '6',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '1','idDetallecurso' => '7',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '1','idDetallecurso' => '8',]);
+        DB::table('cargahorarias')->insert(['idCarga' => '1','idDetallecurso' => '9',]);
     }
 }

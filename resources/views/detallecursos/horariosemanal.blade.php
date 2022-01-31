@@ -22,7 +22,7 @@
             <table class="table"  style="margin-left: 150px;">
                 <tbody>
                     <tr>
-                        <td colspan="5" style=" border: inset 0pt" style="align-items: center"><h2 class="text-center"> <b>    HORARIO SEMANAL DEL PERSONAL ACADEMICO</b>  </h2></td>
+                        <td colspan="5"  style="text-align: center"><h2 class="text-center"> <b>    HORARIO SEMANAL DEL PERSONAL ACADEMICO</b>  </h2></td>
                     </tr>
                     
                     
@@ -60,7 +60,7 @@
         </div>
         <br>
         <div class="row"> 
-            <table class="table"  style="margin-left: 50px;">
+            <table class="table"  style="margin-left: 10px;">
                 <tbody>
                    
                     <tr>

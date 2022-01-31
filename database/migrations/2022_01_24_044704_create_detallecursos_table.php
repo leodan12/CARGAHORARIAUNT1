@@ -21,6 +21,7 @@ class CreateDetallecursosTable extends Migration
             $table->integer('horasL');
             $table->integer('horasP');
             $table->string('seccion');
+            $table->integer('nroAlumnos');
             $table->integer('idSemestre');
             $table->integer('idDocente');
             $table->integer('idCurso');

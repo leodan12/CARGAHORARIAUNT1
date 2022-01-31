@@ -26,6 +26,6 @@ class DetalleAulaSeeder extends Seeder
         DB::table('detalleaulas')->insert(['dia' => 'jueves','inicio' => '07:00','fin' => '11:00','horas' => '4','idAula' => '6','idCargahoraria' => '5',]);
         DB::table('detalleaulas')->insert(['dia' => 'viernes','inicio' => '14:00','fin' => '20:00','horas' => '6','idAula' => '6','idCargahoraria' => '6',]);
         DB::table('detalleaulas')->insert(['dia' => 'viernes','inicio' => '09:00','fin' => '12:00','horas' => '3','idAula' => '6','idCargahoraria' => '7',]);
-        DB::table('detalleaulas')->insert(['dia' => 'viernes','inicio' => '07:00','fin' => '8:00','horas' => '1','idAula' => '6','idCargahoraria' => '8',]);
+        DB::table('detalleaulas')->insert(['dia' => 'viernes','inicio' => '07:00','fin' => '08:00','horas' => '1','idAula' => '6','idCargahoraria' => '8',]);
     }
 }

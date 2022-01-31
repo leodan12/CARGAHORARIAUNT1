@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Detalleaula;
 use App\Models\Aula;
+use App\Models\Curso;
+use App\Models\Carga;
 use App\Models\Cargahoraria;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;   //siempre poner esto ....
@@ -17,14 +19,18 @@ class DetalleaulaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    const PAGINACION=4;
     public function index(Request $request)
     {
         $buscarpor=$request->get('buscarpor');
-        $detalleaula=Detalleaula::where('dia','like','%'.$buscarpor.'%')->get();//->paginate($this::PAGINACION);  
+        $detalleaula=Detalleaula::where('dia','like','%'.$buscarpor.'%')->paginate($this::PAGINACION);//->paginate($this::PAGINACION);  
         $aula=Aula::where('estado','=','1')->get();
         $cargahoraria=Cargahoraria::where('estado','=','1')->get();
-     //  $user=perfil::where('estado','=',TRUE)->get();
-        return  view('detalleaulas.index',compact('detalleaula','buscarpor','aula','cargahoraria'));  
+
+        $curso=Curso::where('estado','=','1')->get();
+        $carga=Carga::where('estado','=','1')->get();
+
+        return  view('detalleaulas.index',compact('detalleaula','buscarpor','aula','cargahoraria','curso','carga'));  
     }
 
     /**
@@ -36,8 +42,10 @@ class DetalleaulaController extends Controller
     {
         $aula=Aula::where('estado','=','1')->get();
         $cargahoraria=Cargahoraria::where('estado','=','1')->get();
+        $curso=Curso::where('estado','=','1')->get();
+        $carga=Carga::where('estado','=','1')->get();
 
-        return  view('detalleaulas.create',compact('cargahoraria','aula'));  
+        return  view('detalleaulas.create',compact('cargahoraria','aula','curso','carga'));  
     }
 
     /**
@@ -55,6 +63,7 @@ class DetalleaulaController extends Controller
             'inicio'=>'required',
             'fin'=>'required',
             'cargahoraria'=>'required',
+            'horas'=>'required',
             
         ],
         [
@@ -62,7 +71,8 @@ class DetalleaulaController extends Controller
             'dia.required'=>'Ingrese Un día',
             'inicio.required'=>'Ingrese una hora de Inicio',
             'fin.required'=>'Ingrese una hora final',
-            'cargahoraria.required'=>'Ingrese una carga horaria '
+            'cargahoraria.required'=>'Ingrese una carga horaria ',
+            'horas.required'=>'Ingrese una horas '
              
             ]);
   
@@ -72,10 +82,47 @@ class DetalleaulaController extends Controller
             $detalleaula->dia=$request->dia;  //designamos el valor de docente
             $detalleaula->inicio=$request->inicio;  //designamos el valor de docente
             $detalleaula->fin=$request->fin;  //designamos el valor de docente
+            $detalleaula->horas=$request->horas;  //designamos el valor de docente
             $detalleaula->estado='1';   //campo de descripcion
             $detalleaula->save();
             
             return redirect()->route('detalleaula.index')->with('datos','Registro Nuevo Guardado...!'); 
+    }
+
+
+    public function store2(Request $request)
+    {
+        $input = $request->all();  
+        $data=request()->validate([
+            'aula'=>'required',
+            'dia'=>'required',
+            'inicio'=>'required',
+            'fin'=>'required',
+            'cargahoraria'=>'required',
+            'horas'=>'required',
+            
+        ],
+        [
+            'aula.required'=>'Ingrese una aula ',
+            'dia.required'=>'Ingrese Un día',
+            'inicio.required'=>'Ingrese una hora de Inicio',
+            'fin.required'=>'Ingrese una hora final',
+            'cargahoraria.required'=>'Ingrese una carga horaria ',
+            'horas.required'=>'Ingrese una horas '
+             
+            ]);
+  
+            $detalleaula=new Detalleaula();    //instanciamos nuestro modelo perfil
+            $detalleaula->idAula=$request->aula;  //designamos el valor de docente
+            $detalleaula->idCargahoraria=$request->cargahoraria;   //designamos el valor de curso
+            $detalleaula->dia=$request->dia;  //designamos el valor de docente
+            $detalleaula->inicio=$request->inicio;  //designamos el valor de docente
+            $detalleaula->fin=$request->fin;  //designamos el valor de docente
+            $detalleaula->horas=$request->horas;  //designamos el valor de docente
+            $detalleaula->estado='1';   //campo de descripcion
+            $detalleaula->save();
+            
+            return redirect()->route('cargahoraria.index')->with('datos','Aula Asignada...!'); 
     }
 
     /**
@@ -100,8 +147,11 @@ class DetalleaulaController extends Controller
         $aula=Aula::where('estado','=','1')->get();
         $cargahoraria=Cargahoraria::where('estado','=','1')->get();
         $detalleaula=Detalleaula::findOrfail($id); 
+        
+        $curso=Curso::where('estado','=','1')->get();
+        $carga=Carga::where('estado','=','1')->get();
 
-        return  view('detalleaulas.edit',compact('cargahoraria','aula','detalleaula')); 
+        return  view('detalleaulas.edit',compact('cargahoraria','aula','detalleaula','curso','carga')); 
     }
 
     /**

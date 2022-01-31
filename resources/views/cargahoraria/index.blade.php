@@ -1,4 +1,4 @@
-@extends('layouts.plantillaDirector')
+@extends('layouts.plantillaDocente')
 @section('contenido')
 <style>
   :root {
@@ -83,18 +83,26 @@
   table tr:hover {
     background-color: #E3E4E5;
   }
+
+  table td {
+   
+  text-align: center;
+  padding: 5px;
+   
+  max-height: 70px;
+}
   
   </style>
 <div class="container-fluid ">
   <div class="form-group">
     
     <div class="container">
-      <h3 class="text-center">LISTADO DE CURSOS ASIGNADOS</h3>
+      <h3 class="text-center">LISTADO DE CARGAS HORARIAS</h3>
       <div class="d-none d-md-block col-12" style="position: relative;right: 40%">
-        <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../director" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
+        <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../docente" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
       </div>
       <div class="col-12 d-md-none" >
-        <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../director" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
+        <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../docente" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
       </div>
 
     @if(session('datos'))
@@ -107,9 +115,10 @@
     @endif
 
     <nav class="navbar navbar-light ">
-      <a href="{{route('detallecurso.create')}}" class="btn btn-success" style="border-radius: 40px;"><i class="fas fa-plus"></i>ASIGNAR CURSOS A LOS DOCENTES</a><br>
+      <a href="{{route('cargahoraria.create')}}" class="btn btn-success" style="border-radius: 40px;"><i class="fas fa-plus"></i>ASIGNAR CARGAS HORARIAS A LOS CURSOS ASIGNADOS</a> 
+      <a href="{{route('cargahorario',$cargahoraria[1]->idSemestre)}}" class="btn btn-success" style="border-radius: 40px;"><i class="fas fa-eye"></i> VER CARGAS-HORARIO SEMANAL</a><br>
      <form class="form-inline my-2 my-lg-0 float-right" method="GET">  <!--Para que se vaya a la derecha de la pagina float-->
-          <input name="buscarpor" class="form-control col-8 mr-2" type="search"  style="border-radius: 40px;" placeholder="Buscar por Año" aria-label="Search" value="{{ $buscarpor }}">
+          <input name="buscarpor" class="form-control col-8 mr-2" type="search"  style="border-radius: 40px;" placeholder="Buscar por dia" aria-label="Search" value="{{ $buscarpor }}">
            <button class="btn btn-success my-2 my-sm-0" style="border-radius: 40px;" type="submit">Buscar <i class="fa fa-search"></i></button>
       </form>  <!--buscador por      -->
   
@@ -117,42 +126,50 @@
 
       <br>
       <div class="table-responsive"  style="border-radius: 12px;">
-        <table class="table" style="border-radius: 12px;">
+        <table class="table td" style="border-radius: 12px;">
         <thead class="thead-dark">
           <tr>
-           
+             
+            <th scope="col" style="text-align: center">CURSO/CARGA HORARIA</th>
+         
+            <th scope="col" style="text-align: center">NRO ALUMNOS</th>
+            <th scope="col" style="text-align: center">SECCION</th>
             <th scope="col" style="text-align: center">AÑO</th>
             <th scope="col" style="text-align: center">SEMESTRE</th>
-            <th scope="col" style="text-align: center">DOCENTE</th>
-            <th scope="col" style="text-align: center">CURSO</th>
-            <th scope="col" style="text-align: center">SECCION</th>
-            <th scope="col" style="text-align: center">NRO ALUMNOS</th>
-            <th scope="col" style="text-align: center">HORAS TOTAL</th>
-            <th scope="col" style="text-align: center">H TEORIA</th>
-            <th scope="col" style="text-align: center">H PRACT</th>
-            <th scope="col" style="text-align: center">H LAB</th>
+            <th scope="col" style="text-align: center">ASIGNAR AULA</th>
+            
             <th scope="col" style="text-align: center">ESTADO</th>
-            <th scope="col" style="text-align: center">EDITAR</th>
+           <th scope="col" style="text-align: center">EDITAR</th>
             <th scope="col" style="text-align: center;" >ELIMINAR</th>
           </tr>
         </thead>
         <tbody>
-            @foreach($detallecurso as $k)
+            @foreach($cargahoraria as $k)
                 <tr>
                     
-                    <td style="text-align: center">{{$k->año}}</td>
-                    <td style="text-align: center">{{$k->semestre->semestre}}</td>
-                    <td style="text-align: center">{{$k->docente->nombres}} {{$k->docente->apellidos}} </td>
-                    <td style="text-align: center">{{$k->curso->nombre}}</td>
-                    <td style="text-align: center">{{$k->seccion}}</td>
+                    
+                    @if ($k->carga == 'curso')
+                        <td style="text-align: center"> {{$k->nombre}}</td>
+                      @else
+                        <td style="text-align: center"> {{$k->carga}}</td>
+                      @endif
+                   
                     <td style="text-align: center">{{$k->nroAlumnos}}</td>
-                    <td style="text-align: center">{{$k->horas}}</td>
-                    <td style="text-align: center">{{$k->horasT}}</td>
-                    <td style="text-align: center">{{$k->horasP}}</td>
-                    <td style="text-align: center">{{$k->horasL}}</td>
+                    <td style="text-align: center">{{$k->seccion}}</td>
+                    <td style="text-align: center">{{$k->año}}</td>
+                    <td style="text-align: center">{{$k->semestre}}</td>
+                    <td class="menu" data-animation="to-left">  
+                        <a href="{{route('asignaraula',$k->id)}}"> 
+                          <span><b>ASIGNAR</b></span>
+                          <span>
+                            <i class="fas fa-edit" aria-hidden="true"></i>
+                          </span>
+                        </a> 
+                      </td>
+                      
                     <td style="text-align: center">{{$k->estado}}</td>
                     <td class="menu" data-animation="to-left">  
-                      <a href="{{route('detallecurso.edit',$k->id)}}"> 
+                      <a href="{{route('cargahoraria.edit',$k->id)}}"> 
                         <span><b>EDITAR</b></span>
                         <span>
                           <i class="fas fa-edit" aria-hidden="true"></i>
@@ -161,10 +178,10 @@
                     </td>
                     <td>
                         <div class="form-group" style="text-align: center">
-                          <form class="submit-eliminar " action="{{action('DetallecursoController@destroy', $k->id)}}" method="post">
+                          <form class="submit-eliminar " action="{{action('CargahorariaController@destroy', $k->id)}}" method="post">
                              @csrf
                              <input name="_method" type="hidden" value="DELETE">
-                             <button onclick="return confirm('Desea cambiar el estado del perfil?')" style="border-radius: 40px;" type="submit" class="btn btn-danger btn-sm">
+                             <button onclick="return confirm('Desea cambiar el estado de la carga horaria?')" style="border-radius: 40px;" type="submit" class="btn btn-danger btn-sm">
                               <i class="fas fa-trash" ></i>
                                
                                   @if ($k->estado == '1')
@@ -184,7 +201,7 @@
         </tbody>
     </table>  
      
-      <div class="align-center" style="margin-left: 45%">{{$detallecurso->links()}}</div>
+      <div class="align-center" style="margin-left: 45%"> {{$cargahoraria->links()}} </div>
 </div>
-
+ 
 @endsection

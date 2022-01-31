@@ -30,17 +30,7 @@
           <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
         </a>
       </div>           
-      <div class="col-12 col-sm-6 col-md-4">
-        <a class="portfolio-item" href="/alumno">
-          <div class="caption">
-            <div class="caption-content">
-              <div class="h2">ASIGNAR HORAS</div>
-              <p class="mb-0">Asignar horas totales por curso</p>
-            </div>
-          </div>
-          <img class="img-fluid" src="/img/ALUMNOS.jpg" alt="">
-        </a>
-      </div>
+       
     
      
 

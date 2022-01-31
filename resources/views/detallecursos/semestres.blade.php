@@ -122,20 +122,33 @@
           <tr>
             <th scope="col"style="text-align: center">ID  </th>
             <th scope="col" style="text-align: center">SEMESTRE</th>
+            <th scope="col" style="text-align: center">DECLARACION CARGA-HORARIA</th>
+            <th scope="col"style="text-align: center">|  </th>
             <th scope="col" style="text-align: center">GENERAR HORARIO</th>
-            <th scope="col"style="text-align: center">ID  </th>
+            <th scope="col"style="text-align: center">|  </th>
             <th scope="col" style="text-align: center">CARGA HORARIA</th>
-            <th scope="col"style="text-align: center">ID  </th>
+            <th scope="col"style="text-align: center">|  </th>
             <th scope="col" style="text-align: center">DECLARACION Nro 1</th>
-            <th scope="col"style="text-align: center">ID  </th>
+            <th scope="col"style="text-align: center">|  </th>
             <th scope="col" style="text-align: center">DECLARACION Nro 2</th>
              </tr>
         </thead>
         <tbody>
             @foreach($semestre as $k)
                 <tr>
-                    <td style="text-align: center">{{$k->id}}</td>
+                  <td style="text-align: center">{{$k->id}}</td>
                     <td style="text-align: center">{{$k->semestre}}</td>
+
+                    <td class="menu" data-animation="to-left">  
+                      <a href="{{route('declaracioncargahoraria',$k->id)}}"> 
+                        <span><b>GENERAR</b></span>
+                        <span>
+                          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                        </span>
+                      </a> 
+                    </td>
+
+                    <td style="text-align: center">|</td>
                     <td class="menu" data-animation="to-left">  
                       <a href="{{route('horariosemanal',$k->id)}}"> 
                         <span><b>VER</b></span>
@@ -144,7 +157,7 @@
                         </span>
                       </a> 
                     </td>
-                    <td style="text-align: center">{{$k->id}}</td>
+                    <td style="text-align: center">|</td>
                     
                     <td class="menu" data-animation="to-left">  
                       <a href="{{route('cargahorariadeclaracion',$k->id)}}"> 
@@ -154,7 +167,7 @@
                         </span>
                       </a> 
                     </td>
-                    <td style="text-align: center">{{$k->id}}</td>
+                    <td style="text-align: center">|</td>
                     <td class="menu" data-animation="to-left">  
                       <a href="{{route('declaracionjurada1',$k->id)}}"> 
                         <span><b>GENERAR</b></span>
@@ -163,7 +176,7 @@
                         </span>
                       </a> 
                     </td>
-                    <td style="text-align: center">{{$k->id}}</td>
+                    <td style="text-align: center">|</td>
                     <td class="menu" data-animation="to-left">  
                       <a href="{{route('declaracionjurada2',$k->id)}}"> 
                         <span><b>GENERAR</b></span>

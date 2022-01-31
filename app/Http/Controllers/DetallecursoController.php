@@ -21,10 +21,11 @@ class DetallecursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    const PAGINACION=4;
     public function index(Request $request)
     {
         $buscarpor=$request->get('buscarpor');
-        $detallecurso=Detallecurso::where('año','like','%'.$buscarpor.'%')->get();//->paginate($this::PAGINACION);  
+        $detallecurso=Detallecurso::where('año','like','%'.$buscarpor.'%')->where('idCurso','!=','1')->paginate($this::PAGINACION);//->paginate($this::PAGINACION);  
         $docente=Docente::where('estado','=','1')->get();
         $curso=Curso::where('estado','=','1')->get();
         $semestre=Semestre::where('estado','=','1')->get();
@@ -133,6 +134,46 @@ class DetallecursoController extends Controller
             
     }
 
+    public function declaracioncargahoraria($id){
+        
+        $semestre= Semestre::where('id','=',$id)->first();
+           
+
+        $user=Auth::user()->id;
+
+        $cargahoraria = DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',$user)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('cargahorarias as ch','dc.id','=','ch.idDetallecurso')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->join('detalleaulas as da','da.idCargahoraria','=','ch.id')
+        ->join('aulas as a','da.idAula','=','a.id')
+        ->join('cargas as ca','ch.idCarga','=','ca.id')
+        ->select('ch.idCarga','ca.descripcion','ca.carga','c.id','c.nombre','da.horas','dc.horasT','dc.horasL','dc.horasP','da.dia','da.inicio','da.fin')
+        ->get();
+
+        $curso = DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',$user)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->select('dc.nroAlumnos','dc.seccion','dc.horas','c.id','c.nombre','c.codigo','c.categoria','c.ciclo')
+        ->get();
+        
+
+        
+        $docente=Docente::where('idUsuario','=',$user)->first();
+        $escuela=Escuela::where('id','=',$docente->idEscuela)->first();
+         
+        //return $cargahoraria;
+        $pdf = \PDF::loadView('detallecursos.declaracioncargahoraria', ['escuela'=>$escuela,'curso'=>$curso,'docente'=>$docente, 'cargahoraria'=>$cargahoraria,'semestre'=>$semestre]);
+        return $pdf->setPaper('A4', 'portrait')->stream('declaracioncargahoraria.pdf');
+            
+    }
+
     public function declaracionjurada1($id){
         
         $semestre= Semestre::where('id','=',$id)->first();
@@ -180,13 +221,25 @@ class DetallecursoController extends Controller
             'curso'=>'required',
             'año'=>'required',
             'semestre'=>'required',
+            'nroAlumnos'=>'required',
+            'seccion'=>'required',
+            'horas'=>'required',
+            'horasT'=>'required',
+            'horasP'=>'required',
+            'horasL'=>'required',
             
         ],
         [
             'docente.required'=>'Ingrese Un docente ',
             'curso.required'=>'Ingrese Un curso ',
             'año.required'=>'Ingrese Un año ',
-            'semestre.required'=>'Ingrese Un semestre '
+            'semestre.required'=>'Ingrese Un semestre ',
+            'nroAlumnos.required'=>'Ingrese Un  numero Alumnos ',
+            'seccion.required'=>'Ingrese Una seccion ',
+            'horas.required'=>'Ingrese Una horas ',
+            'horasT.required'=>'Ingrese las horasT ',
+            'horasP.required'=>'Ingrese las horasP ',
+            'horasL.required'=>'Ingrese las horasL ' 
              
             ]);
   
@@ -195,6 +248,12 @@ class DetallecursoController extends Controller
             $detallecurso->idCurso=$request->curso;   //designamos el valor de curso
             $detallecurso->año=$request->año;  //designamos el valor de docente
             $detallecurso->idSemestre=$request->semestre;   //designamos el valor de curso
+            $detallecurso->nroAlumnos=$request->nroAlumnos;  //designamos el valor de docente
+            $detallecurso->seccion=$request->seccion;   //designamos el valor de curso
+            $detallecurso->horas=$request->horas;   //designamos el valor de curso
+            $detallecurso->horasT=$request->horasT;  //designamos el valor de docente
+            $detallecurso->horasP=$request->horasP;   //designamos el valor de curso 
+            $detallecurso->horasL=$request->horasL;  //designamos el valor de docente
             $detallecurso->estado='1';   //campo de descripcion
             $detallecurso->save();
             
@@ -248,6 +307,12 @@ class DetallecursoController extends Controller
             'curso'=>'required',
             'año'=>'required',
             'semestre'=>'required',
+            'nroAlumnos'=>'required',
+            'seccion'=>'required',
+            'horas'=>'required',
+            'horasT'=>'required',
+            'horasP'=>'required',
+            'horasL'=>'required',
             'estado'=>'required',
             
         ],
@@ -256,7 +321,13 @@ class DetallecursoController extends Controller
             'curso.required'=>'Ingrese Un curso ',
             'año.required'=>'Ingrese Un año ',
             'semestre.required'=>'Ingrese Un semestre ',
-            'estado.required'=>'Ingrese Un estado '
+            'estado.required'=>'Ingrese Un estado ',
+            'nroAlumnos.required'=>'Ingrese Un  numero Alumnos ',
+            'seccion.required'=>'Ingrese Una seccion ',
+            'horas.required'=>'Ingrese Una horas ',
+            'horasT.required'=>'Ingrese las horasT ',
+            'horasP.required'=>'Ingrese las horasP ',
+            'horasL.required'=>'Ingrese las horasL ' 
              
             ]);
             $detallecurso=Detallecurso::findOrfail($id); //buscamos nuestro detalle que vamos a actualizar
@@ -264,6 +335,12 @@ class DetallecursoController extends Controller
             $detallecurso->idCurso=$request->curso;   //designamos el valor de curso
             $detallecurso->año=$request->año;  //designamos el valor de docente
             $detallecurso->idSemestre=$request->semestre;   //designamos el valor de curso
+             $detallecurso->nroAlumnos=$request->nroAlumnos;  //designamos el valor de docente
+            $detallecurso->seccion=$request->seccion;   //designamos el valor de curso
+            $detallecurso->horas=$request->horas;   //designamos el valor de curso
+            $detallecurso->horasT=$request->horasT;  //designamos el valor de docente
+            $detallecurso->horasP=$request->horasP;   //designamos el valor de curso 
+            $detallecurso->horasL=$request->horasL;  //designamos el valor de docente
             $detallecurso->estado=$request->estado;   //campo de descripcion
             $detallecurso->save();
             

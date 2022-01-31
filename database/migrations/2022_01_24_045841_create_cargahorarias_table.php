@@ -15,7 +15,7 @@ class CreateCargahorariasTable extends Migration
     {
         Schema::create('cargahorarias', function (Blueprint $table) {
             $table->id();
-             $table->integer('idDetallecurso');
+            $table->integer('idDetallecurso');
             $table->integer('idCarga');
             $table->boolean('estado')->default(true);
             $table->timestamps();

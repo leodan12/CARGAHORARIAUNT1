@@ -25,31 +25,52 @@
              @csrf  
            
              <div class="form-row">
+              <div class="col col-4"></div>
+              <div class="from-group col-md-4">
+                  <label for="cargahoraria">CARGA HORARIA:</label>
+                  <select name="cargahoraria" id="cargahoraria" class="form-control"   style="border-radius: 40px;" required  >
+                    
+                    @if($detalleaula->cargahoraria->idCarga == '1')
+                    <option value="{{$detalleaula->cargahoraria->id}}"  selected> {{$detalleaula->cargahoraria->detallecurso->docente->nombres}} {{$detalleaula->cargahoraria->detallecurso->docente->apellidos}} /  {{$detalleaula->cargahoraria->detallecurso->curso->nombre}}</option>
+                    @else
+                    <option value="{{$detalleaula->cargahoraria->id}}"  selected> {{$detalleaula->cargahoraria->detallecurso->docente->nombres}} {{$detalleaula->cargahoraria->detallecurso->docente->apellidos}} /  {{$detalleaula->cargahoraria->carga->carga}}</option>
+                   
+                    @endif
+                       
+                    @foreach ( $cargahoraria as $itemp)
+                    @foreach($carga as $k)
+                        @if ($k->id == $itemp->idCarga)
+                        @if ($k->carga == 'curso')
+                        <option value="{{$itemp->id}}">{{$itemp->detallecurso->docente->nombres}} {{$itemp->detallecurso->docente->apellidos}} / {{$itemp->detallecurso->curso->nombre}}</option>
+                        @else
+                        <option value="{{$itemp->id}}">{{$itemp->detallecurso->docente->nombres}} {{$itemp->detallecurso->docente->apellidos}} / {{$itemp->carga->carga}}</option>
+                        @endif
+                            
+                        @endif
+                      
+
+                    @endforeach
+               
+                    @endforeach
+                  </select>
+      
+                </div>
+          </div>
+
+             <div class="form-row">
                 <div class="col col-4"></div>
                 <div class="from-group col-md-4">
                     <label for="aula">AULA:</label>
                     <select name="aula" id="aula" class="form-control"   style="border-radius: 40px;" required  >
-                        <option value="{{$detalleaula->aula->id}}"  selected> {{$detalleaula->aula->ubicacion}}</option>
+                        <option value="{{$detalleaula->aula->id}}"  selected> {{$detalleaula->aula->local}} /  {{$detalleaula->aula->numero}}</option>
                         @foreach ( $aula as $itemp)
-                    <option value="{{$itemp->id}}">{{$itemp->ubicacion}}</option>
+                    <option value="{{$itemp->id}}">{{$itemp->local}} / {{$itemp->numero}}</option>
                         @endforeach
                     </select>
                   </div>
             </div>
 
-            <div class="form-row">
-                <div class="col col-4"></div>
-                <div class="from-group col-md-4">
-                    <label for="cargahoraria">CARGA HORARIA:</label>
-                    <select name="cargahoraria" id="cargahoraria" class="form-control"   style="border-radius: 40px;" required  >
-                        <option value="{{$detalleaula->cargahoraria->id}}"selected> {{$detalleaula->cargahoraria->horas}}</option>
-                        @foreach ( $cargahoraria as $itemp)
-                    <option value="{{$itemp->id}}">{{$itemp->horas}}</option>
-                        @endforeach
-                    </select>
-        
-                  </div>
-            </div>
+            
            
            
 
@@ -94,6 +115,18 @@
                 @enderror
            </div>
          </div>
+         <div class="form-row">
+          <div class="col col-4"></div>
+          <div class="form-group col-md-4">
+              <label for="horas">HORAS:</label>
+              <input type="number" class="form-control @error('horas') is-invalid @enderror" id="horas" name="horas"  style="border-radius: 40px;"  value="{{$detalleaula->horas}}">
+              @error('horas')
+                  <span class="invalid-feedback" role="alert">
+                       <strong>{{$message}}</strong>
+                   </span>                  
+              @enderror
+         </div>
+       </div>
         
         
 
