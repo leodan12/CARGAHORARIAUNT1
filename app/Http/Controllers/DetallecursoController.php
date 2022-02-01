@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Hash;
 
 class DetallecursoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     const PAGINACION=4;
     public function index(Request $request)
     {

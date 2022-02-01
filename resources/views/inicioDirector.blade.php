@@ -29,7 +29,29 @@
           </div>
           <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
         </a>
-      </div>           
+      </div>   
+      <div class="col-12 col-sm-6 col-md-4">
+        <a class="portfolio-item" href="/gestionardocentes">
+          <div class="caption">
+            <div class="caption-content">
+              <div class="h2">GESTIONAR DOCENTES</div>
+              <p class="mb-0">Gestionar los docentes ahora!</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
+        </a>
+      </div>  
+      <div class="col-12 col-sm-6 col-md-4">
+        <a class="portfolio-item" href="/gestionarsemestres">
+          <div class="caption">
+            <div class="caption-content">
+              <div class="h2">GESTIONAR SEMESTRES</div>
+              <p class="mb-0">Gestionar los semestres ahora!</p>
+            </div>
+          </div>
+          <img class="img-fluid" src="/img/colegiofondo01.jpg" alt="">
+        </a>
+      </div>          
        
     
      

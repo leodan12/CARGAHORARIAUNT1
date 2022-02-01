@@ -37,8 +37,8 @@ Route::resource('usuario','UserController');
 Route::resource('detallecurso','DetallecursoController');
 Route::resource('detalleaula','DetalleaulaController');
 Route::resource('cargahoraria','CargahorariaController');
-
-
+Route::resource('gestionardocentes','DocenteController');
+Route::resource('gestionarsemestres','SemestreController');
 
 //para entrar con diferente perfil
 
@@ -58,6 +58,8 @@ Route::get('/asignarcursos', 'DetallecursoController@index');
 Route::get('/asignaraulas', 'DetalleaulaController@index');
 Route::get('/horario', 'DetallecursoController@semestres');
 Route::get('/cursos', 'CursoController@index');
+Route::get('/gestionardocentes', 'DocenteController@index')->name('gestionardocentes');
+Route::get('/gestionarsemestres', 'SemestreController@index')->name('gestionarsemestres');
 
 Route::get('/cargahorariadocente', 'CargahorariaController@index');
 
@@ -99,6 +101,14 @@ Route::get('cancelarDetalleAulas', function () {
 Route::get('cancelarcarga', function () {
     return redirect()->route('cargahoraria.index')->with('datos','Accion cancelada..!');
 })->name('cancelarcarga');  //le damos nombre a la ruta
+ 
+Route::get('cancelarDocente', function () {
+    return redirect()->route('gestionardocentes.index')->with('datos','Accion cancelada..!');
+})->name('cancelarDocente');  //le damos nombre a la ruta
+ 
+Route::get('cancelarSemestre', function () {
+    return redirect()->route('gestionarsemestres.index')->with('datos','Accion cancelada..!');
+})->name('cancelarSemestre');  //le damos nombre a la ruta
  
 
 //rutas usadas por javascript

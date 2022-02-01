@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class CursoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     public function index(Request $request)
     {
         $buscarpor=$request->get('buscarpor');
