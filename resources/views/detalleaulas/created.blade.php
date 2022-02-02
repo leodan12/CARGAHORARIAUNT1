@@ -30,22 +30,12 @@
                 <div class="from-group col-md-4">
                     <label for="cargahoraria">CURSO/CARGA HORARIA:</label>
                     <select name="cargahoraria" id="cargahoraria" class="form-control"   style="border-radius: 40px;" required  >
-                        <option value="{{ old('cargahoraria') }}" disabled selected> SELECCIONE UNA OPCION:</option>
-                        @foreach ( $cargahoraria2 as $itemp)
-                        @foreach($carga as $k)
-                            @if ($k->id == $itemp->idCarga)
-                            @if ($k->carga == 'curso')
-                            <option value="{{$itemp->id}}"> {{$itemp->nombre}}</option>
+                        @if ($cargahoraria->carga->carga == 'curso')
+                            <option value="{{$cargahoraria->id}}" readonly selected> {{$cargahoraria->detallecurso->curso->nombre}}</option>
                             @else
-                            <option value="{{$itemp->id}}"> {{$itemp->carga}}</option>
+                            <option value="{{$cargahoraria->id}}" readonly selected> {{$cargahoraria->carga->carga}}</option>
                             @endif
-                                
-                            @endif
-                          
-
-                        @endforeach
-                   
-                        @endforeach
+                        
                     </select>
         
                   </div>
@@ -133,7 +123,7 @@
                 <div class="col-md-4">&nbsp;</div> 
                 <div class="col-md-4">
                     <button type="submit" style="border-radius: 40px;" class="btn btn-primary mr-4" ><i class="fas fa-save"></i>Guardar</button>
-                    <a href="{{route('cancelarDetalleAulas')}}" style="border-radius: 40px;" class="btn btn-danger"> <i class="fas fa-ban"></i> Cancelar</a>
+                    <a href="{{route('cancelarDetalleAulas2')}}" style="border-radius: 40px;" class="btn btn-danger"> <i class="fas fa-ban"></i> Cancelar</a>
                 </div>
                 <div class="col-md-3">&nbsp;</div> 
           </div>

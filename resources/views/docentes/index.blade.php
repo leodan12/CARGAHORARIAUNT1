@@ -89,7 +89,7 @@
   <div class="form-group">
     
     <div class="container">
-      <h3 class="text-center">LISTADO DE CURSOS</h3>
+      <h3 class="text-center">LISTADO DE DOCENTES</h3>
       <div class="d-none d-md-block col-12" style="position: relative;right: 40%">
         <button class=" btn btn-success" style="border-radius: 40px;"   type="menu"><a class="text-white" href="../director" ><i class="fas fa-arrow-left"> </i> Regresar</a> </button>
       </div>

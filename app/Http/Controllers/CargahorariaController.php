@@ -153,7 +153,8 @@ class CargahorariaController extends Controller
         $docente=Docente::where('idUsuario','=',$user)->first();
 
         $aula=Aula::where('estado','=','1')->get();
-        $cargahoraria=Cargahoraria::where('estado','=','1')->get();
+        $cargahoraria=Cargahoraria::where('estado','=','1')
+        ->where('id','=',$id)->first();
         $curso=Curso::where('estado','=','1')->get();
         $carga=Carga::where('estado','=','1')->get();
         $cargahoraria2 = DB::table('docentes as d','d.estado','=','1')

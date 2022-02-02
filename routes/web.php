@@ -98,16 +98,20 @@ Route::get('cancelarDetalleAulas', function () {
     return redirect()->route('detalleaula.index')->with('datos','Accion cancelada..!');
 })->name('cancelarDetalleAulas');  //le damos nombre a la ruta
  
+Route::get('cancelarDetalleAulas2', function () {
+    return redirect()->route('cargahoraria.index')->with('datos','Accion cancelada..!');
+})->name('cancelarDetalleAulas2');  //le damos nombre a la ruta
+ 
 Route::get('cancelarcarga', function () {
     return redirect()->route('cargahoraria.index')->with('datos','Accion cancelada..!');
 })->name('cancelarcarga');  //le damos nombre a la ruta
  
 Route::get('cancelarDocente', function () {
-    return redirect()->route('gestionardocentes.index')->with('datos','Accion cancelada..!');
+    return redirect()->route('gestionardocentes')->with('datos','Accion cancelada..!');
 })->name('cancelarDocente');  //le damos nombre a la ruta
  
 Route::get('cancelarSemestre', function () {
-    return redirect()->route('gestionarsemestres.index')->with('datos','Accion cancelada..!');
+    return redirect()->route('gestionarsemestres')->with('datos','Accion cancelada..!');
 })->name('cancelarSemestre');  //le damos nombre a la ruta
  
 
