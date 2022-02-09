@@ -9,6 +9,7 @@ use App\Models\Docente;
 use App\Models\Semestre;
 use App\Models\Escuela;
 use App\Models\Facultad;
+use App\Models\Aula;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;   //siempre poner esto ....
 use Illuminate\Support\Facades\Hash;
@@ -60,6 +61,103 @@ class DetallecursoController extends Controller
 
         return  view('detallecursos.semestres',compact('buscarpor', 'docente','curso','semestre'));  
    
+    }
+
+    public function cargasemanal( )
+    {
+        $user=Auth::user()->id;
+
+        $semestre=Semestre::where('estado','=','1')->get();  
+
+        $curso = DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',$user)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->select('dc.id','dc.idCurso','c.nombre','c.codigo','dc.idSemestre')
+        ->get();
+        
+        $carga = DB::table('cargas as c','c.estado','=','1')
+        ->select('c.id','c.carga')
+        ->get();
+
+        $aula=Aula::where('estado','=','1')->get();
+
+        return  view('detalleaulas.createf',compact('aula', 'carga','curso','semestre'));  
+   
+    }
+
+    public function byHorarioSemanal($id){
+
+         
+        return DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',Auth::user()->id)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('cargahorarias as ch','dc.id','=','ch.idDetallecurso')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->join('detalleaulas as da','da.idCargahoraria','=','ch.id')
+        ->join('aulas as a','da.idAula','=','a.id')
+        ->join('cargas as ca','ch.idCarga','=','ca.id')
+        ->select('c.nombre','s.semestre','da.horas','ca.carga','da.dia','da.inicio','da.fin','a.local','a.numero','ch.id')
+        ->get();
+    }
+
+    public function cargadocente( )
+    {
+        $user=Auth::user()->id;
+
+        $semestre=Semestre::where('estado','=','1')->get();  
+
+        $curso = DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',$user)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->select('dc.id','dc.idCurso','c.nombre','c.codigo','dc.idSemestre','dc.seccion')
+        ->get();
+        
+        $carga = DB::table('cargas as c','c.estado','=','1')
+        ->select('c.id','c.carga')
+        ->get();
+
+        $aula=Aula::where('estado','=','1')->get();
+
+        return  view('detallecursos.create2',compact('aula', 'carga','curso','semestre'));  
+   
+    }
+    public function byCargaSemanal($id){
+
+         
+        return DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',Auth::user()->id)
+        ->join('escuelas as e','e.id','=','d.idEscuela')
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->where('c.nombre','!=','CargaNoLectiva')
+        ->select('c.nombre','c.codigo','dc.seccion','e.escuela','c.ciclo','dc.nroAlumnos','dc.horas','dc.horasT','dc.horasP','dc.horasL')
+        ->get();
+    }
+
+    public function byCargaNLSemanal($id){
+
+         
+        return DB::table('docentes as d','d.estado','=','1')
+        ->where('d.idUsuario','=',Auth::user()->id)
+        ->join('detallecursos as dc','d.id','=','dc.idDocente')
+        ->join('cargahorarias as ch','dc.id','=','ch.idDetallecurso')
+        ->join('semestres as s','s.id','=','dc.idSemestre')
+        ->where('s.id','=',$id)
+        ->join('cursos as c','c.id','=','dc.idCurso')
+        ->join('detalleaulas as da','da.idCargahoraria','=','ch.id')
+        ->join('aulas as a','da.idAula','=','a.id')
+        ->join('cargas as ca','ch.idCarga','=','ca.id')
+        ->where('ca.carga','!=','curso')
+        ->select('ca.carga','ca.descripcion','da.horas')
+        ->get();
     }
 
 
@@ -123,7 +221,7 @@ class DetallecursoController extends Controller
         ->join('cursos as c','c.id','=','dc.idCurso')
         ->select('c.id','c.nombre','c.codigo','c.categoria','c.ciclo')
         ->get();
-        
+        $aula=Aula::where('estado','=','1')->get();
 
         
         $docente=Docente::where('idUsuario','=',$user)->first();

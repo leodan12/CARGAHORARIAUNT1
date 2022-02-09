@@ -65,6 +65,19 @@ Route::get('/cargahorariadocente', 'CargahorariaController@index');
 
 Route::get('/cargahorario/{id}', 'CargahorariaController@cargahorario')->name('cargahorario');
 
+//para la gestionar horario semanal
+Route::get('/cargasemanal', 'DetallecursoController@cargasemanal')->name('cargasemanal');
+
+Route::Get('/horariobysemestre/{id}', 'DetallecursoController@byHorarioSemanal');
+
+
+// para gestionar las cargas horarias
+
+Route::get('/cargadocente', 'DetallecursoController@cargadocente')->name('cargadocente');
+
+Route::Get('/cargabydocente/{id}', 'DetallecursoController@byCargaSemanal');
+
+Route::Get('/cargaNLbydocente/{id}', 'DetallecursoController@byCargaNLSemanal');
 
 //rutas de metodos adicionales
  
@@ -75,6 +88,8 @@ Route::get('/declaracionjurada2/{id}','DetalleCursoController@declaracionjurada2
 
 Route::get('/asignaraula/{id}','CargahorariaController@asignaraula')->name('asignaraula');
 Route::post('/store2','DetalleaulaController@store2')->name('store2');
+
+Route::post('/store3','DetalleaulaController@store3')->name('store3');
 
 Route::get('/declaracioncargahoraria/{id}','DetalleCursoController@declaracioncargahoraria')->name('declaracioncargahoraria');
 

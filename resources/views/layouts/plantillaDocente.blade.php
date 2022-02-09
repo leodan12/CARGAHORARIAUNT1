@@ -36,7 +36,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="../../../css/stylish-portfolio.min.css" >
-
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 </head>
 
 <body class="login-page sidebar-collapse">
@@ -72,8 +72,14 @@
            
 
           <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" rel="tooltip" title="Documentos" data-placement="bottom" href="/horario">
-              <h5> VER DOCUMENTOS</h5>
+            <a class="nav-link" rel="tooltip" title="Documentos" data-placement="bottom" href="/cargasemanal">
+              <h5> GESTIONAR HORARIO</h5>
+            </a>
+          </li>
+
+          <li class="nav-item d-none d-sm-inline-block">
+            <a class="nav-link" rel="tooltip" title="Documentos" data-placement="bottom" href="/cargadocente">
+              <h5> GESTIONAR CARGA HORARIA</h5>
             </a>
           </li>
          
